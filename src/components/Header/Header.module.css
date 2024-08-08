@@ -1,0 +1,12 @@
+header{
+  width: 100%;
+}
+
+.header-top{
+ display: flex;
+ width: 100%;
+}
+
+ul{
+  list-style: none;
+}
