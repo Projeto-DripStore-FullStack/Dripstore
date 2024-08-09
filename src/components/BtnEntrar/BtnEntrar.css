@@ -1,0 +1,10 @@
+.btnEntrar{
+  color: #fff;
+  background-color: #C92071;
+  width: 158px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  text-align: center;
+  font-weight: bolder;
+}

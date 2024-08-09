@@ -9,6 +9,7 @@ import Cart from "./pages/Cart"
 import Confirm from "./pages/Confirm"
 import Orders from "./pages/Orders"
 import ProductDetail from "./pages/ProductDetail"
+import BtnEntrar from "./components/BtnEntrar/BtnEntrar";
 
 function AppRoutes(){
   return(
@@ -24,6 +25,10 @@ function AppRoutes(){
         <Route path="/ProductDetail" element={<ProductDetail />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/Success" element={<Success />}></Route>
+        <Route path="/BtnEntrar" element={<BtnEntrar />}></Route>
+      </Routes>
+      <Routes>
+        
       </Routes>
     </BrowserRouter>
   )
