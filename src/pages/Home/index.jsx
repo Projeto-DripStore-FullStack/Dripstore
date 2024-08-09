@@ -1,11 +1,9 @@
-import Header from "../../components/Header/Header"
-import Footer from "../../components/Footer/Footer"
+import BtnEntrar from "../../components/BtnEntrar/BtnEntrar"
 
 function Home(){
   return (
     <main>
-      <Header/>
-      <Footer/>
+      <BtnEntrar/>
     </main>
   )
 }
