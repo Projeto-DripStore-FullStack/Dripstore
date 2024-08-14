@@ -1,0 +1,98 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.footer{
+    height: 454px;
+    width: 100%;
+    background-color: rgba(31, 31, 31, 1);
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-family: "inter", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 72px;
+}
+
+.divPaiFooter{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.divColunas{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 940px;
+}
+
+.divFilhoFooterColuna1{
+    width: 78px;
+    height: 278px;
+    border-spacing: 20px;
+    font-family: "inter", sans-serif;
+    font-weight: 300;
+}
+
+.logoFooter{
+    width: 253px;
+    height: 44px;
+}
+
+.divFilhoColuna1Text{
+    width: 307px;
+    height: 78px;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.contactsLogos{
+    display: flex;
+    justify-content: space-around;
+    width: 124.12px;
+    height: 20.53px;
+}
+
+.divFilhoColuna2{
+    width: 135px;
+    height: 278px;
+    text-align: left;
+}
+
+.divFilhoColuna2 ul li {
+    margin-bottom: 20px;
+}
+
+.divFilhoColuna3{
+    width: 96px;
+    height: 278px;
+    text-align: left; 
+}
+
+.divFilhoColuna3 ul li {
+    margin-bottom: 20px;
+}
+
+.divFilhoColuna4{
+    height: 278px; 
+    width: 168px;
+    text-align: left;
+}
+
+.divFilhoColuna2Texto2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.hrFooter{
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+}
