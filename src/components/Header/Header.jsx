@@ -4,7 +4,7 @@ import Buy from "../../assets/Buy.png";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-function Header() {
+export const Header = () => {
   return (
     <header className="divPaiHeader">
       <div className="divFilho1Header">
@@ -57,5 +57,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;
