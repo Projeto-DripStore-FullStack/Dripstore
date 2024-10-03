@@ -1,0 +1,10 @@
+.simpleHeaderDiv{
+    height: 60px;
+    align-items: center;
+    padding: 10px;
+}
+
+.imgSimpleHeader{
+    width: 15%;
+    margin-left: 100px;
+}
