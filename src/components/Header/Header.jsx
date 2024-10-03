@@ -25,7 +25,9 @@ export const Header = () => {
         <Link className="linkRegister" to="/Register">
           Cadastre-se
         </Link>
-        <button className="loginButton">Entrar</button>
+        <Link to="/Login">
+          <button className="loginButton">Entrar</button>
+        </Link>
         <button className="buyButton">
           <img src={Buy} alt="" />
         </button>
@@ -56,4 +58,4 @@ export const Header = () => {
       </div>
     </header>
   );
-}
+};
