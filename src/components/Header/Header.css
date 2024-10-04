@@ -1,10 +1,15 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 header {
   width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header-top {
@@ -13,15 +18,16 @@ header {
 }
 
 .divFilho1Header {
-  width: 100%;
+  width: 90%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
 }
 
 .divFilho2Header {
-  margin-left: 58px;
+  width: 90%;
+  margin-top: 1rem;
 }
 
 .divInputSearchHeader {
@@ -96,12 +102,11 @@ header {
   font-size: 1rem;
   font-family: "inter", sans-serif;
   font-weight: 200;
-  justify-content: space-around;
   display: flex;
+  gap: 1rem;
   width: 423px;
   height: 29px;
   align-items: center;
-  text-align: center;
 }
 
 .aLinkNavbar {

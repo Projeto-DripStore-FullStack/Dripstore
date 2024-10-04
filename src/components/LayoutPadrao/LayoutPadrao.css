@@ -1,6 +1,10 @@
-.full-width-container {
-    max-width: 100%;
-    overflow-x: hidden;
+*{
+    margin: 0;
     padding: 0;
-  }
-  
+    box-sizing: border-box;
+}
+
+.site-container{
+    background-color: #F9F8FE;
+    padding: 3% 5%;
+}

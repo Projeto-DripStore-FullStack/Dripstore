@@ -1,0 +1,61 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card-produto{
+    font-family: "inter", sans-serif;
+}
+
+.product-board {
+  background-color: #fff;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  width: 17%;
+  margin-bottom: 1rem;
+}
+
+.product-discount{
+    background-color: #E7FF86;
+    display: inline;
+    text-align: center;
+    padding: .5rem 1rem;
+    font-weight: 600;
+    border-radius: 30px;
+}
+
+.product-image{
+    padding: 2rem 0;
+}
+
+.product-board:hover {
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+.product-categoria{
+    font-weight: bolder;
+    font-size: 11px;
+    margin-bottom: .5rem;
+}
+
+.product-nome{
+    font-size: 18px;
+    margin-bottom: .5rem;
+}
+
+.product-preco{
+    display: flex;
+    gap: .8rem;
+}
+
+.product-full{
+    color: #ccc;
+    font-weight: bolder;
+}
+
+.product-oferta{
+    font-weight: bolder;
+}
