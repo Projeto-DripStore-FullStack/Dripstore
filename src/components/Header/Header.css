@@ -3,14 +3,10 @@
   padding: 0;
 }
 
-header {
+.divPaiHeader {
   width: 100%;
 }
 
-.header-top {
-  display: flex;
-  width: 100%;
-}
 
 .divFilho1Header {
   width: 100%;
@@ -29,7 +25,7 @@ header {
   align-items: center;
   justify-content: center;
   height: 60px;
-  width: 599px;
+  width: 499px;
 }
 
 .headerSearchInput {

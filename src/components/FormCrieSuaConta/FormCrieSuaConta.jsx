@@ -3,32 +3,32 @@ import { InputParaForm } from "../InputParaForm/InputParaForm";
 import "./FormCrieSuaConta.css";
 
 export const FormCrieSuaConta = () => {
-return (
+  return (
     <>
-    <div className="formAcessarContaBox">
+      <div className="formAcessarContaBox">
         <h3 className="titleFormformAcessarConta">Crie Sua Conta</h3>
         <p className="pFormformAcessarConta">
-        Já possui uma conta? Então entre{" "}
-        <a className="aForm3" href="/Login">
+          Já possui uma conta? Então entre{" "}
+          <a className="aForm3" href="/Login">
             aqui.
-        </a>
+          </a>
         </p>
         <div className="divInputs">
-        <InputParaForm
+          <InputParaForm
             label="Email*"
             placeholder="Insira seu login ou email"
-        />
+          />
         </div>
         <button className="btnFormformAcessarConta">Acessar Conta</button>
         <div className="divBaseFormformAcessarConta">
-        <p className="pFormformAcessarConta">Ou faça Login Com</p>
-        <img
+          <p className="pFormformAcessarConta">Ou faça Login Com</p>
+          <img
             className="imgFormformAcessarConta"
             src={RedesSociaisDeAcesso}
             alt="Ícones de redes sociais"
-        />
+          />
         </div>
-    </div>
+      </div>
     </>
-);
+  );
 };

@@ -9,17 +9,17 @@ import tshirt from "../../assets/Tshirt.png";
 import headphones from "../../assets/Headphones.png";
 import './style.css'
 import OfertaEspecial from "../../components/OfertaEspecial/OfertaEspecial";
+import Hero from "../../components/Hero/Hero";
 
 function Home() {
   return (
     <main>
       <LayoutPadrao>
         <Header />
-        <MyCarousel />
+        <Hero/>
         <br />
         <div
           style={{
-            width: "100%",
             display: "block",
           }}
         >
