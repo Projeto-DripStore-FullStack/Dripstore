@@ -9,6 +9,7 @@ import Cart from "./pages/Cart"
 import Confirm from "./pages/Confirm"
 import Orders from "./pages/Orders"
 import ProductDetail from "./pages/ProductDetail"
+import ProductList from "./pages/ProductList";
 import Footer from "./components/Footer/Footer";
 
 function AppRoutes(){
@@ -26,6 +27,7 @@ function AppRoutes(){
         <Route path="/ProductDetail" element={<ProductDetail />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/Success" element={<Success />}></Route>
+        <Route path="/ProductList" element={<ProductList/>}></Route>
       </Routes>
     </BrowserRouter>
   )
