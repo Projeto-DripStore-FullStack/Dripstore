@@ -1,7 +1,5 @@
-.full-width-container {
-    max-width: 100%;
-    overflow-x: hidden;
+*{
+    margin: 0;
     padding: 0;
-    background-color: #f9f8fe;
   }
   

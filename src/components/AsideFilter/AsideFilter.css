@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.product-list-filter{
+    background-color: #FFFFFF;
+    display: inline-block;
+    padding: 1rem;
+    font-family: "inter", sans-serif;
+    width: 75%;
+}
+
+.product-list-filter h3{
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.product-list-filter-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-list-filter-form label{
+    font-size: 11px;
+    font-weight: bolder;
+    display: flex;
+    align-items: center;
+    padding-bottom: .5rem;
+}
+
+.product-list-filter-form p{
+    margin: 1rem 0;
+}
+
+.product-list-filter-form input{
+    margin: 0 .5rem 0 0;
+}

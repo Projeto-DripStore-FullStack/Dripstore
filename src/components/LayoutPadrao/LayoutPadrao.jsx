@@ -1,10 +1,10 @@
 import React from "react";
 import './LayoutPadrao.css';
 
-const LayoutPadrao = ({ children, maxWidthContainer = "container-xl" }) => {
+const LayoutPadrao = ({children, layoutType}) => {
   return (
     <>
-      <div className={`container ${maxWidthContainer}`} style={{ padding: 0 }}>
+      <div className={`site-container ${layoutType}`}>
         {children}
       </div>
     </>
