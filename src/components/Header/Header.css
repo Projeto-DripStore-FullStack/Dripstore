@@ -21,6 +21,7 @@ header {
   width: 90%;
   display: flex;
   justify-content: space-between;
+  gap: 3rem;
   align-items: center;
   text-align: center;
 }
@@ -35,14 +36,13 @@ header {
   align-items: center;
   justify-content: center;
   height: 60px;
-  width: 599px;
+  width: 80%;
 }
 
 .headerSearchInput {
   outline: none;
   box-shadow: none;
-  cursor: pointer;
-  width: 559px;
+  width: 90%;
   height: 60px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -68,6 +68,7 @@ header {
   font-weight: 400;
   font-size: 16px;
   color: rgba(71, 71, 71, 1);
+  min-width: max-content;
 }
 
 .linkRegister:hover{

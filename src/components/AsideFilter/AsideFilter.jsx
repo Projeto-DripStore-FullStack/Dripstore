@@ -3,9 +3,9 @@ import "./AsideFilter.css"
 export const AsideFilter = () => {
     return (
         <>
-            <aside>
+            <aside className="product-list-filter">
                 <h3>Filtrar por</h3>
-                <form>
+                <form className="product-list-filter-form">
                     <p>Marka</p>
                     <label htmlFor="">
                         <input type="checkbox" name="" id="" />
@@ -56,6 +56,15 @@ export const AsideFilter = () => {
                     <label htmlFor="">
                         <input type="checkbox" name="" id="" />
                         Unissex
+                    </label>
+                    <p>Estado</p>
+                    <label htmlFor="">
+                        <input type="radio" name="" id="" />
+                        Novo
+                    </label>
+                    <label htmlFor="">
+                        <input type="radio" name="" id="" />
+                        Usado
                     </label>
                 </form>
             </aside>

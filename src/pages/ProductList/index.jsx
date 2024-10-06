@@ -8,7 +8,7 @@ function ProductList (){
     return (
         <> 
             <Header/>
-            <LayoutPadrao>
+            <LayoutPadrao layoutType="product-list">
                 <AsideFilter/>
                 <Produto/>
             </LayoutPadrao>
