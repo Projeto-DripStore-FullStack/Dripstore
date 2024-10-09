@@ -2,8 +2,7 @@ import Footer from "../../components/Footer/Footer";
 import { FormAcessarConta } from "../../components/FormAcesseSuaConta/FormAcessarConta";
 import LayoutPadrao from "../../components/LayoutPadrao/LayoutPadrao";
 import { SimpleHeader } from "../../components/SimpleHeader/SimpleHeader";
-import SenakersLoginBody1 from "../../assets/SneakersLoginBody1.png";
-import SenakersLoginBody2 from "../../assets/SneakersLoginBody2.png";
+import { SneakersLoginPage } from "../../components/SneakersLoginPage/SneakersLoginPage";
 
 function Login() {
   return (
@@ -17,26 +16,14 @@ function Login() {
             display: "flex",
             justifyContent: "space-around",
             alignItems: "center",
-            padding: "20px", 
+            padding: "20px",
           }}
         >
           <div>
             {" "}
             <FormAcessarConta />
           </div>
-          <div>
-            {" "}
-            <img
-              src={SenakersLoginBody1}
-              alt="Sneaker 1"
-              style={{ maxWidth: "500px", maxHeight: "500px" }}
-            />
-            <img
-              src={SenakersLoginBody2}
-              alt="Sneaker 2"
-              style={{ maxWidth: "500px", maxHeight: "500px" }}
-            />
-          </div>
+          <SneakersLoginPage />
         </div>
       </LayoutPadrao>
       <Footer />
