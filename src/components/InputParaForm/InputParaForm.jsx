@@ -1,11 +1,17 @@
-import "./InputParaForm.css"
+import "./InputParaForm.css";
 export const InputParaForm = (props) => {
-    return (
-      <>
+  return (
+    <>
       <div className="boxInput1">
-        <label className="labelInput" htmlFor="">{props.label}</label>
-        <input className="inputFinalParaForm" placeholder={props.placeholder } type="text" />
+        <label className="labelInput" htmlFor="">
+          {props.label}
+        </label>
+        <input
+          className="inputFinalParaForm"
+          placeholder={props.placeholder}
+          type="text"
+        />
       </div>
-      </>
-    )
-  }
+    </>
+  );
+};

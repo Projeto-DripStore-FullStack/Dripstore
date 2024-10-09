@@ -1,76 +1,78 @@
 .formAcessarContaBox {
-    width: 450px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 32px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  }
-  
-  .titleFormformAcessarConta {
-    font-size: 24px;
-    font-weight: 600;
-    color: #333333;
-    margin-bottom: 8px;
-  }
-  
-  .pFormformAcessarConta {
-    font-size: 14px;
-    color: #666666;
-    margin-bottom: 16px;
-  }
-  
-  .aForm3 {
-    color: #535353;
-    text-decoration: none;
-  }
+  width: 450px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  font-family: "inter", sans-serif;
+}
 
-  .aForm3:hover {
-    color: #c92071;
-  }
-  
-  .divInputs {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-  
-  .aFormformAcessarConta {
-    font-size: 14px;
-    color: #535353;
-    text-decoration: none;
-    margin-bottom: 24px;
-  }
+.titleFormformAcessarConta {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 1.5rem;
+}
 
-  .aFormformAcessarConta:hover{
-    color: #c92071;
-  }
-  
-  .btnFormformAcessarConta {
-    width: 100%;
-    padding: 12px;
-    background-color:#c92071;
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btnFormformAcessarConta:hover {
-    background-color:white;
-    color: #c92071;
-  }
-  
-  .divBaseFormformAcessarConta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 24px;
-  }
-  
-  .imgFormformAcessarConta {
-    width: 40px;
-  }
+.pFormformAcessarConta {
+  font-size: 14px;
+  color: #666666;
+}
+
+.aForm3 {
+  color: #535353;
+  text-decoration: none;
+}
+
+.aForm3:hover {
+  color: #c92071;
+}
+
+.divInputs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.aFormformAcessarConta {
+  font-size: 14px;
+  color: #535353;
+  text-decoration: none;
+  margin-bottom: 24px;
+  text-decoration: underline;
+}
+
+.aFormformAcessarConta:hover {
+  color: #c92071;
+}
+
+.btnFormformAcessarConta {
+  width: 100%;
+  padding: 12px;
+  background-color: #c92071;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.btnFormformAcessarConta:hover {
+  background-color: white;
+  color: #c92071;
+}
+
+.divBaseFormformAcessarConta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.imgFormformAcessarConta {
+  width: 40px;
+}
