@@ -1,0 +1,105 @@
+.my-cart{
+    background-color: #fff;
+    width: 100%;
+    font-family: 'inter', sans-serif;
+    padding: 2rem;
+}
+
+.my-cart-topics{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border-bottom: 2px solid #ccc;
+    padding: 1rem 0;
+}
+
+.topic-mycart{
+    grid-column: span 2;
+    font-weight: bolder;
+}
+
+.topic-quantity,
+.topic-price,
+.topic-total{
+    grid-column: span 1;
+    text-align: center;
+}
+
+.my-cart-infos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    border-bottom: 2px solid #ccc;
+    padding: 1rem 0;
+}
+
+.cart-product{
+    grid-column: span 2;
+    display: flex;
+    gap: 10px;
+}
+
+.cart-product img{
+    grid-column: span 2;
+    height: 12vh;
+    border-radius: 5px;
+}
+
+.cart-product div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.cart-product span{
+    color: #aaa;
+}
+
+.cart-product-name{
+    font-weight: bolder;
+}
+
+.cart-quantity,
+.cart-unities,
+.cart-total{
+    grid-column: span 1;
+    text-align: center;
+}
+
+.my-cart-discount-and-track{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding-top: 2rem;
+    gap: 40px;
+}
+
+.my-cart-discount-and-track input{
+    outline: none;
+    padding: 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #eee;
+    width: 75%;
+}
+
+.my-cart-discount-and-track button{
+    padding: 1rem 1.5rem;
+    text-align: center;
+    width: 15%;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #C92071;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.my-cart-discount-and-track p{
+    font-weight: bolder;
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
