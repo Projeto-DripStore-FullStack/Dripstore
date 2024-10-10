@@ -1,0 +1,132 @@
+.bodyMyOrders{
+    display: flex;
+    background-color: #f9f8fe;
+    width: 100%;
+    padding: 50px;
+    height: 700px;
+    justify-content: space-around;
+}
+
+.sideBarMenu{
+    width: 500px;
+    height: 280px;
+    border-radius: 8px;
+    background-color: white;
+    display: block;
+    padding: 25px;
+    justify-content: space-around;
+}
+
+.divLinkToPagesOrders{
+    height: 50px;
+    text-align: left;
+    border-bottom: solid 2px;
+    border-bottom-color:#cccccc;
+}
+
+.lastDivLinkToPagesOrders{
+    height: 50px;
+    text-align: left;
+}
+
+.linkToPagesOrders{
+    text-decoration: none;
+    color: #474747;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.linkToPagesOrders:hover{
+    color: #C92071;
+}
+
+.divViewOrdersCar{
+    width: 1100px;
+    height: 600px;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.divViewOrdersCarTitle{
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+}
+
+.viewOrdersCarTitle{
+    color: #474747;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.viewOrdersCarName{
+    color: #474747;
+    font-size: 18px;
+}
+
+.individualOrderCar{
+    height: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 2px;
+    border-bottom-color:#cccccc;
+}
+
+.lastIndividualOrderCar{
+    height: 100px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.div1IndividualOrderCar{
+    display: flex;
+    justify-content: space-between;
+    width: 470px;
+}
+
+.imgBackGroundColor{
+    background-color: #E2E3FF;
+    width: 80px;
+}
+
+.imgBodyOrders{
+    height: 50px;
+    width: 80px;
+}
+
+.divNumberAndOrder{
+    display: block;
+    justify-content: space-between ;
+    height: 50px;
+}
+
+.orderNumber{
+    color: #8F8F8F;
+}
+
+.order{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.statusOrderInTransit{
+    font-weight: bold;
+    font-size: 18px;
+    color: #F6AA1C;
+}
+
+.statusOrderComplete{
+    font-weight: bold;
+    font-size: 18px;
+    color: #8F8F8F;
+}
+
+.statusOrderCanceled{
+    font-weight: bold;
+    font-size: 18px;
+    color: #EE4266;
+}

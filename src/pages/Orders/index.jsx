@@ -1,7 +1,14 @@
-function Orders(){
-  return(
-    <h1>Orders</h1>
-  )
-}
+import Footer from "../../components/Footer/Footer";
+import { Header } from "../../components/Header/Header";
+import { BodyPageOrders } from "../../components/BodyPageOrders/BodyPageOrders";
 
-export default Orders
+function Orders() {
+  return (
+    <>
+      <Header />
+      <BodyPageOrders/>
+      <Footer />
+    </>
+  );
+}
+export default Orders;
