@@ -16,11 +16,15 @@
 }
 
 .ofertaEspecial{
-    margin-top: 15vh;
-    gap: 12vw;
+    width: 100%;
+}
+
+.ofertaEspecial-container{
     display: flex;
+    gap: 5rem;
+    margin: 5rem 0;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
 }
 
 .textoOfertaEspecial{

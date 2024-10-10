@@ -8,7 +8,7 @@ function Login() {
   return (
     <>
       <SimpleHeader />
-      <LayoutPadrao>
+      <LayoutPadrao layoutType='login-page'>
         <div
           style={{
             height: "90vh",
