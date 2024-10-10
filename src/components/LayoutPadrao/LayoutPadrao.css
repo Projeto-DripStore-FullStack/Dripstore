@@ -36,3 +36,20 @@
 .product-related-gallery{
     grid-column: span 2;
 }
+
+.site-container.cart-page{
+    background-color: #F9F8FE;
+    padding: 3% 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.my-cart{
+    grid-column: span 2;
+}
+
+.cart-summary{
+    grid-column: span 1;
+}
