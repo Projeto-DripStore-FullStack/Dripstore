@@ -3,8 +3,8 @@ import AirJordansHP from '../../assets/AirJordansHP.png'
 
 function OfertaEspecial() {
     return (
-      <>
-        <section className='ofertaEspecial'>
+        <main className='ofertaEspecial'>
+          <div className='ofertaEspecial-container'>
             <div className='imgAirJordan'>
                 <img className='imgTenisAirJordan' src={AirJordansHP} alt="" />
             </div>
@@ -19,8 +19,8 @@ function OfertaEspecial() {
                 tempora, tempore vel.</p>
                 <button className='btnOfertaEspecial'>Ver Oferta</button>
             </div>
-        </section>
-      </>
+          </div>
+        </main>
     )
   }
   

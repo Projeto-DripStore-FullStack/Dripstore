@@ -6,7 +6,7 @@ import "./Header.css";
 
 export const Header = () => {
   return (
-    <header className="divPaiHeader">
+    <header className="header-container">
       <div className="divFilho1Header">
         <Link to="/">
           <img src={logo} alt="Logotipo digital store" />
@@ -34,26 +34,28 @@ export const Header = () => {
       </div>
       <div className="divFilho2Header">
         <navbar className="navbarHeader">
-          <a className="aLinkNavbar">
-            <Link className="linkNavbarHeader" to="/">
-              Home
-            </Link>
-          </a>
-          <a className="aLinkNavbar">
-            <Link className="linkNavbarHeader" to="/Products">
-              Produtos
-            </Link>
-          </a>
-          <a className="aLinkNavbar">
-            <Link className="linkNavbarHeader" to="/Categories">
-              Categorias
-            </Link>
-          </a>
-          <a className="aLinkNavbar">
-            <Link className="linkNavbarHeader" to="/Orders">
-              Meus Pedidos
-            </Link>
-          </a>
+          <ul className="menu-header">
+            <li className="LinkNavbar">
+              <Link className="linkNavbarHeader" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="LinkNavbar">
+              <Link className="linkNavbarHeader" to="/Products">
+                Produtos
+              </Link>
+            </li>
+            <li className="LinkNavbar">
+              <Link className="linkNavbarHeader" to="/Categories">
+                Categorias
+              </Link>
+            </li>
+            <li className="LinkNavbar">
+              <Link className="linkNavbarHeader" to="/Orders">
+                Meus Pedidos
+              </Link>
+            </li>
+          </ul>
         </navbar>
       </div>
     </header>
