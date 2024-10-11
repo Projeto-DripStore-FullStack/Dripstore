@@ -1,7 +1,7 @@
 import KSwiss from "../../assets/KSwiss.png"
 import "./Produto.css"
 
-function Produto({ produto }){
+function Produto(){
   return(
     <div className="card-produto">
       <div className="product-board">
