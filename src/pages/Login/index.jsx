@@ -9,22 +9,8 @@ function Login() {
     <>
       <SimpleHeader />
       <LayoutPadrao layoutType='login-page'>
-        <div
-          style={{
-            height: "90vh",
-            background: "linear-gradient(180deg, #bbbcf3, #e0e1fa)",
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-            padding: "20px",
-          }}
-        >
-          <div>
-            {" "}
-            <FormAcessarConta />
-          </div>
+          <FormAcessarConta />
           <SneakersLoginPage />
-        </div>
       </LayoutPadrao>
       <Footer />
     </>

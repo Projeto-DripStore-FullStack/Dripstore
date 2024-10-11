@@ -53,3 +53,25 @@
 .cart-summary{
     grid-column: span 1;
 }
+
+.site-container.login-page{
+    background: linear-gradient(180deg, #bbbcf3, #e0e1fa);
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.site-container.register-page{
+    background: linear-gradient(180deg, #bbbcf3, #e0e1fa);
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 6.5rem 1.2rem;
+}
+
+.site-container.register-page .formAcessarContaBox{
+    align-self: flex-start;
+}

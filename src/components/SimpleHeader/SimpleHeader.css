@@ -1,10 +1,10 @@
-.simpleHeaderDiv{
-    height: 60px;
+.simple-header{
+    height: 4rem;
     align-items: center;
     padding: 10px;
 }
 
-.imgSimpleHeader{
-    width: 15%;
-    margin-left: 100px;
+.simple-header-container{
+    width: 90%;
+    margin: auto;
 }

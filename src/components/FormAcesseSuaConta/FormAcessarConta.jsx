@@ -4,7 +4,6 @@ import "./FormAcessarConta.css";
 
 export const FormAcessarConta = () => {
   return (
-    <>
       <div className="formAcessarContaBox">
         <h3 className="titleFormformAcessarConta">Acesse Sua Conta</h3>
         <p className="pFormformAcessarConta">
@@ -33,6 +32,5 @@ export const FormAcessarConta = () => {
           />
         </div>
       </div>
-    </>
   );
 };
