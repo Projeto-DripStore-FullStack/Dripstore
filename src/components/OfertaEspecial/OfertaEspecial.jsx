@@ -9,7 +9,7 @@ function OfertaEspecial() {
                 <img className='imgTenisAirJordan' src={AirJordansHP} alt="" />
             </div>
             <div className='textoOfertaEspecial'>
-                <h4 className='titleOfertaEspecial'>ferta especial</h4>
+                <h4 className='titleOfertaEspecial'>Oferta especial</h4>
                 <h2 className='titleOfertaEspecial2'>Air Jordan edição de colecionador</h2>
                 <p className='subTitleOfertaEspecial'>Lorem ipsum dolor, sit amet consectetur 
                 adipisicing elit.Vitae, non reprehenderit quae

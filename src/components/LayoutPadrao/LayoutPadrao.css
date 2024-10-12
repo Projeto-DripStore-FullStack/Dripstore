@@ -75,3 +75,26 @@
 .site-container.register-page .formAcessarContaBox{
     align-self: flex-start;
 }
+
+.site-container.home-page{
+    background-color: #F9F8FE;
+    padding: 3% 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.home-page .topic-container{
+    grid-column: span 3;
+    text-align: left;
+}
+
+.home-page .topic-container:nth-child(3){
+    grid-column: span 3;
+    text-align: center;
+}
+
+.home-page .card{
+    margin: 0 auto 4rem auto;
+    display: inline;
+}

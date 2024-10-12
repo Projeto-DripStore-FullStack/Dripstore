@@ -41,7 +41,7 @@ export const Header = () => {
               </Link>
             </li>
             <li className="LinkNavbar">
-              <Link className="linkNavbarHeader" to="/Products">
+              <Link className="linkNavbarHeader" to="/ProductList">
                 Produtos
               </Link>
             </li>
