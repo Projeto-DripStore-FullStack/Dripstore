@@ -1,0 +1,12 @@
+.product-highlights-header{
+  font-family: 'inter', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.product-highlights-gallery{
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+}

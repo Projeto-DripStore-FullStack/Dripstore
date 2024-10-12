@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     width: 23%;
+    margin-bottom: 2rem;
 }
 
 .product-board {
@@ -42,8 +43,8 @@
 }
 
 .product-board:hover {
-  transform: scale(1.01);
-  cursor: pointer;
+    transform: scale(1.01);
+    cursor: pointer;
 }
 
 .product-categoria{
@@ -60,11 +61,13 @@
 .product-preco{
     display: flex;
     gap: .8rem;
+    
 }
 
 .product-full{
     color: #ccc;
     font-weight: bolder;
+    text-decoration: line-through;
 }
 
 .product-oferta{

@@ -62,4 +62,9 @@
   position: absolute;
   top: 25vh;
   right: 5vw;
+  object-fit: cover;
+}
+
+.sneaker-img{
+  object-fit: cover;
 }
