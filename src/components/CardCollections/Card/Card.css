@@ -8,8 +8,7 @@
   border-radius: 8px;
   background-color: #d8e3f2;
   display: flex;
-  height: 251px;
-  width: 30%;
+  width: 100%;
   font-family: 'inter', sans-serif;
   position: relative;
 }
@@ -38,7 +37,7 @@
 }
 
 .cardDescription {
-  font-size: 39px;
+  font-size: 2.5rem;
 }
 
 .cardBtn {
@@ -47,7 +46,7 @@
   border: none;
   border-radius: 8px;
   height: 6vh;
-  width: 8vw;
+  width: 9rem;
   font-size: medium;
   font-weight: 600;
   cursor: pointer;
@@ -61,7 +60,6 @@
 
 .card-img{
   position: absolute;
-  width: 55%;
   right: 0;
   bottom: 0;
 }

@@ -4,3 +4,11 @@
   margin-bottom: 6rem;
   gap: 2rem;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .categorie-container{
+    overflow-x: scroll;
+    scrollbar-width: none;
+    justify-content: flex-start;
+  }
+}

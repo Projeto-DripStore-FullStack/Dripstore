@@ -9,7 +9,7 @@ export const Hero = () =>{
       <div className='hero-content'>
         <div className='hero-text-content'>
           <h4>Melhores ofertas personalizadas</h4>
-          <h1 className='hero-call'>Queima de estoque Nike <img src={Fire} alt="" /> </h1>
+          <h1 className='hero-call'>Queima de estoque Nike&#128293; </h1>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem labore vitae ab! Maiores nesciunt, suscipit consectetur placeat illum velit omnis quisquam alias?</p>
           <button>Ver Ofertas</button>
         </div>
