@@ -1,3 +1,10 @@
 .card-collection{
     display: flex;
+    gap: 10%;
+}
+
+@media (min-width: 320px) and (max-width: 480px){
+    .card-collection{
+        flex-direction: column;
+    }
 }

@@ -10,3 +10,17 @@
   display: flex;
   justify-content: space-between;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .product-highlights-gallery{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-produto{
+    margin: auto;
+    width: 95%;
+    justify-content: space-between;
+  }
+  
+}

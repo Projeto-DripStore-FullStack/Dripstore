@@ -1,98 +1,96 @@
 *{
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 .footer{
-    height: 454px;
-    width: 100%;
-    background-color: rgba(31, 31, 31, 1);
-    color: rgba(255, 255, 255, 1);
-    text-align: center;
+    background-color: #1F1F1F;
+    font-family: 'inter', sans-serif;
+    color: #fff;
+    padding: 5rem 0 0 0;
+}
+
+.footer-container{
+    width: 90%;
+    margin: auto;
+}
+
+.footer-content{
+    display: flex;
+}
+
+.footer-content h3{
+    margin-bottom: 2.5rem;
+}
+
+.footer-content ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.footer-content li{
+    list-style: none;
+}
+
+.footer-content .link-footer{
+    text-decoration: none;
+    color: #fff;
+}
+
+.first-section-footer{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.first-section-footer p{
+    width: 70%;
+}
+
+.first-section-footer .social{
+    display: flex;
+    gap: 1rem;
     align-items: center;
+}
+
+
+.second-section-footer,
+.third-section-footer,
+.fourth-section-footer{
+    flex: 1;
+}
+
+.rights{
+    margin-top: 3rem;
+    padding: 2rem 0;
+    display: flex;
     justify-content: center;
-    font-family: "inter", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 72px;
-}
-
-.divPaiFooter{
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    text-align: center;
+    border-top: 1px solid #fff;
 }
 
-.divColunas{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    max-width: 940px;
-}
 
-.divFilhoFooterColuna1{
-    width: 78px;
-    height: 278px;
-    border-spacing: 20px;
-    font-family: "inter", sans-serif;
-    font-weight: 300;
-}
+@media (min-width: 320px) and (max-width: 480px) {
+    .footer-content{
+        display: inline;
+    }
 
-.logoFooter{
-    width: 253px;
-    height: 44px;
-}
+    .second-section-footer,
+    .third-section-footer,
+    .fourth-section-footer{
+    display: inline-block;
+    }
 
-.divFilhoColuna1Text{
-    width: 307px;
-    height: 78px;
-    text-align: left;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+    .third-section-footer{
+        margin: 3rem;
+    }
 
-.contactsLogos{
-    display: flex;
-    justify-content: space-around;
-    width: 124.12px;
-    height: 20.53px;
-}
+    .fourth-section-footer{
+        margin-top: 3rem;
+    }
+  }
 
-.divFilhoColuna2{
-    width: 135px;
-    height: 278px;
-    text-align: left;
-}
-
-.divFilhoColuna2 ul li {
-    margin-bottom: 20px;
-}
-
-.divFilhoColuna3{
-    width: 96px;
-    height: 278px;
-    text-align: left; 
-}
-
-.divFilhoColuna3 ul li {
-    margin-bottom: 20px;
-}
-
-.divFilhoColuna4{
-    height: 278px; 
-    width: 168px;
-    text-align: left;
-}
-
-.divFilhoColuna2Texto2{
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.hrFooter{
-    width: 100%;
-    height: 1px;
-    margin: 20px 0;
-}
