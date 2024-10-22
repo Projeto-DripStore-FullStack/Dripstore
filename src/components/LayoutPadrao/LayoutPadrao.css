@@ -19,3 +19,80 @@
     grid-template-columns: 1fr 3fr;
     gap: 20px;
 }
+
+.breadcrumb{
+    grid-column: span 2;
+}
+
+.product-detail-gallery{
+    grid-column: span 1;
+}
+
+.product-detail-description{
+    grid-column: span 1;
+}
+
+.product-related-gallery{
+    grid-column: span 2;
+}
+
+.site-container.cart-page{
+    background-color: #F9F8FE;
+    padding: 3% 5%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+}
+
+.my-cart{
+    grid-column: span 2;
+}
+
+.cart-summary{
+    grid-column: span 1;
+}
+
+.site-container.login-page{
+    background: linear-gradient(180deg, #bbbcf3, #e0e1fa);
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+}
+
+.site-container.register-page{
+    background: linear-gradient(180deg, #bbbcf3, #e0e1fa);
+    height: calc(100vh - 4rem);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 6.5rem 1.2rem;
+}
+
+.site-container.register-page .formAcessarContaBox{
+    align-self: flex-start;
+}
+
+.site-container.home-page{
+    background-color: #F9F8FE;
+    padding: 3% 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.home-page .topic-container{
+    grid-column: span 3;
+    text-align: left;
+}
+
+.home-page .topic-container:nth-child(3){
+    grid-column: span 3;
+    text-align: center;
+}
+
+.home-page .card{
+    margin: 0 auto 4rem auto;
+}

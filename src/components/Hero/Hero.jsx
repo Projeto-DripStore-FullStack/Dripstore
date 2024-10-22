@@ -1,24 +1,23 @@
-import "./Hero.css";
-import TenisNike from "../../assets/White-Sneakers-PNG-Clipart 1.png";
-import Ornament from "../../assets/Ornament.png";
-export default function Hero() {
-  return (
-    <section className="banner">
-      <div className="banner-content">
-        <div className="banner-text">
-          <p id="title-amarelo">Melhores ofertas personalizadas</p>
-          <h1>Queima de estoque Nike🔥</h1>
-          <p>
-            Consequat culpa exercitation mollit nisi excepteur do do tempor
-            laboris eiusmod irure consectetur.
-          </p>
-          <button type="button">Ver ofertas</button>
+import './Hero.css'
+import Sneaker from '../../assets/White-Sneakers-Home.png'
+import Memphis from '../../assets/memphis.png'
+import Fire from '../../assets/queima_de_estoque.png'
+
+export const Hero = () =>{
+  return(
+    <main className='hero-container'>
+      <div className='hero-content'>
+        <div className='hero-text-content'>
+          <h4>Melhores ofertas personalizadas</h4>
+          <h1 className='hero-call'>Queima de estoque Nike&#128293; </h1>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem labore vitae ab! Maiores nesciunt, suscipit consectetur placeat illum velit omnis quisquam alias?</p>
+          <button>Ver Ofertas</button>
         </div>
-        <div >
-          <img className="banner-image" src={TenisNike} alt="" />
+        <div className='hero-img-content'>
+          <img src={Sneaker} alt="nike sneaker" className='sneaker-img'/>
+          <img src={Memphis} alt="memphis" className='memphis-img'/>
         </div>
-        <img src={Ornament} id="ornament" />
       </div>
-    </section>
-  );
+    </main>
+  )
 }

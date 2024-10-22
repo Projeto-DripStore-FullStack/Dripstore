@@ -1,0 +1,21 @@
+.sneakers {
+  display: flex;
+  position: relative;
+}
+
+.sneaker-left,
+.sneaker-right {
+  object-fit: cover;
+  height: 70vh;
+}
+
+.sneaker-left {
+  position: absolute;
+  top: -10vh;
+  left: -15vw;
+}
+
+.sneaker-right {
+  position: relative;
+  top: 10vh;
+}

@@ -11,16 +11,19 @@
 }
 
 .imgTenisAirJordan{
-    width: 573px;
-    height: 330px;
+    width: 90%;
 }
 
 .ofertaEspecial{
-    margin-top: 15vh;
-    gap: 12vw;
+    width: 100%;
+}
+
+.ofertaEspecial-container{
     display: flex;
+    gap: 5rem;
+    margin: 5rem 0;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
 }
 
 .textoOfertaEspecial{
@@ -71,4 +74,33 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .ofertaEspecial-container{
+        flex-direction: column;
+    }
+
+    .imgAirJordan{
+        width: 80vw;
+        height: 40vh;
+    }
+
+    .imgTenisAirJordan{
+        width: 80vw;
+    }
+
+    .textoOfertaEspecial{
+        width: 100%;
+        padding: 5%;
+    }
+
+    .subTitleOfertaEspecial{
+        margin-top: 1rem;
+    }
+
+    .btnOfertaEspecial{
+        width: 40%;
+    }
+    
+  }
 

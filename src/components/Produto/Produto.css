@@ -6,6 +6,10 @@
 
 .card-produto{
     font-family: "inter", sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 23%;
+    margin-bottom: 2rem;
 }
 
 .product-board {
@@ -16,8 +20,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: fit-content;
   margin-bottom: 1rem;
+}
+
+.product-board img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .product-discount{
@@ -34,8 +43,8 @@
 }
 
 .product-board:hover {
-  transform: scale(1.01);
-  cursor: pointer;
+    transform: scale(1.01);
+    cursor: pointer;
 }
 
 .product-categoria{
@@ -52,11 +61,13 @@
 .product-preco{
     display: flex;
     gap: .8rem;
+    
 }
 
 .product-full{
     color: #ccc;
     font-weight: bolder;
+    text-decoration: line-through;
 }
 
 .product-oferta{
