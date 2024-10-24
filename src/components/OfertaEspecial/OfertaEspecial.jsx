@@ -1,5 +1,6 @@
-import './OfertaEspecial.css'
-import AirJordansHP from '../../assets/AirJordansHP.png'
+import "./OfertaEspecial.css";
+import AirJordansHP from "../../assets/AirJordansHP.png";
+import LayoutPadrao from "../LayoutPadrao/LayoutPadrao";
 
 function OfertaEspecial() {
     return (
