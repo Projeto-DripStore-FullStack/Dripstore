@@ -13,13 +13,13 @@ export const BodyPageOrders = () => {
           </div>
           <br />
           <div className="divLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="">
+            <a className="linkToPagesOrders" href="/Orders">
               Meus Pedidos
             </a>
           </div>
           <br />
           <div className="divLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="">
+            <a className="linkToPagesOrders" href="/MyInfo">
               Minhas Informações
             </a>
           </div>

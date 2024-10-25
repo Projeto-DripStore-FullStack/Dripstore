@@ -1,0 +1,83 @@
+.bodyMyMyInfo {
+    display: flex;
+    background-color: #f9f8fe;
+    width: 100%;
+    padding: 50px;
+    height: 700px;
+    justify-content: space-between;
+    font-family: 'inter', sans-serif;
+}
+
+.sideBarMenu {
+    width: 400px;
+    height: 280px;
+    border-radius: 8px;
+    background-color: white;
+    display: block;
+    padding: 25px;
+    justify-content: space-around;
+}
+
+.divLinkToPagesMyInfo {
+    height: 50px;
+    text-align: left;
+    border-bottom: solid 2px;
+    border-bottom-color: #cccccc;
+}
+
+.lastDivLinkToPagesMyInfo {
+    height: 50px;
+    text-align: left;
+}
+
+.linkToPagesMyInfo {
+    text-decoration: none;
+    color: #474747;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.linkToPagesMyInfo:hover {
+    color: #C92071;
+}
+
+.divViewMyInfoCar {
+    background-color: white;
+    width: 1000px;
+    height: 600px;
+    justify-content: space-around;
+    height: 400px;
+    padding: 30px;
+}
+
+.viewMyInfoCarLinks {
+    color: #C92071;
+}
+
+.divViewMyInfoCarTitle {
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    border-bottom: 2px solid;
+    border-bottom-color: #CCCCCC;
+}
+
+.viewMyInfoCarTitle {
+    color: #474747;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.div-my-adress-info {
+    font-family: 'inter', sans-serif;
+    text-align: left;
+    padding: 15px;
+}
+
+.div-my-personal-info {
+    font-family: 'inter', sans-serif;
+    text-align: left;
+    border-bottom: 2px solid;
+    border-bottom-color: #CCCCCC;
+    padding: 15px;
+}
