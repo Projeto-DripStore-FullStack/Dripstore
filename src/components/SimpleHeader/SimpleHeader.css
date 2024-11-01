@@ -8,3 +8,23 @@
     width: 90%;
     margin: auto;
 }
+
+/* Smartphones */
+@media (max-width: 375px) {
+    .simple-header{
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+    
+    .simple-header-container{
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+    }
+    .log-digital{
+        width: 30vw;
+    }
+}

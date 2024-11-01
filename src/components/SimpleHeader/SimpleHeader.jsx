@@ -7,7 +7,7 @@ export const SimpleHeader = () => {
   return (
     <main className="simple-header">
       <div className="simple-header-container">
-        <Link to="/"><img src={logo} alt="" /></Link>
+        <Link to="/"><img className="log-digital" src={logo} alt="" /></Link>
       </div>
     </main>
   );
