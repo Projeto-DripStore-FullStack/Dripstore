@@ -20,8 +20,15 @@
   top: 10vh;
 }
 
-/* Smartphones */
+/* Smartphones 375px */
 @media (max-width: 375px) {
+  .sneakers{
+    display: none;
+  }
+} 
+
+/* Smartphones 425px */
+@media (max-width: 425px) {
   .sneakers{
     display: none;
   } 
