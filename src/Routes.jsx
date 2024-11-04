@@ -11,6 +11,7 @@ import Orders from "./pages/Orders"
 import ProductDetail from "./pages/ProductDetail"
 import ProductList from "./pages/ProductList";
 import Footer from "./components/Footer/Footer";
+import MyInfo from "./pages/MyInfo";
 
 function AppRoutes(){
   return(
@@ -28,6 +29,7 @@ function AppRoutes(){
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/Success" element={<Success />}></Route>
         <Route path="/ProductList" element={<ProductList/>}></Route>
+        <Route path="/MyInfo" element={<MyInfo/>}></Route>
       </Routes>
     </BrowserRouter>
   )

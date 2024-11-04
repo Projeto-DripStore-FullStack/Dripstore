@@ -75,7 +75,7 @@ function Footer() {
           </div>
         </div>
         <div className="rights">
-          <p>2022 Digital College</p>
+          <p>@ 2022 Digital College</p>
         </div>
       </div>
     </footer>

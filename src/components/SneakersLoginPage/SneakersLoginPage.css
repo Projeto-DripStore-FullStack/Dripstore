@@ -19,3 +19,10 @@
   position: relative;
   top: 10vh;
 }
+
+/* Smartphones */
+@media (max-width: 375px) {
+  .sneakers{
+    display: none;
+  } 
+}
