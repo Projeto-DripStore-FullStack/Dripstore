@@ -1,38 +1,51 @@
-import './Categories.css'
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { CardCategories } from "./CardCategories/CardCategories";
+import "./Categories.css";
 import TShirt from "../../assets/Tshirt.png";
-import Pants from '../../assets/Pants.png'
-import Sneakers from '../../assets/sneakers.png'
-import Headphone from '../../assets/Headphones.png'
+import Pants from "../../assets/Pants.png";
+import Sneakers from "../../assets/sneakers.png";
+import Headphones from "../../assets/Headphones.png";
 
 export const Categories = () => {
-  return(
-    <div className='categorie-container'>
-      <CardCategories 
-        img = {TShirt}
-        alt = 'Camisetas'
-        description = 'Camisetas'
-      />
-      <CardCategories 
-        img = {Pants}
-        alt = 'Calças'
-        description = 'Calças'
-      />
-      <CardCategories 
-        img = {Pants}
-        alt = 'Bonés'
-        description = 'Bonés'
-      />
-      <CardCategories 
-        img = {Headphone}
-        alt = 'Fones'
-        description = 'Fones'
-      />
-      <CardCategories 
-        img = {Sneakers}
-        alt = 'Tênis'
-        description = 'Tênis'
-      />
+  const [categorias, setCategorias] = useState([]);
+
+  const imageMapping = {
+    Camiseta: TShirt,
+    Calças: Pants,
+    "Tênis": Sneakers,
+    "Fones": Headphones,
+  };
+
+  const getCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/categorias");
+      const categoriasData = response.data;
+
+      if (Array.isArray(categoriasData)) {
+        setCategorias(categoriasData);
+      } else {
+        console.error("Expected an array but got:", categoriasData);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar as categorias:", error);
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
+
+  return (
+    <div className="categorie-container">
+      {categorias.map((categoria, index) => (
+        <CardCategories
+          key={index}
+          img={imageMapping[categoria.nome] || TShirt}
+          alt={categoria.nome}
+          description={categoria.nome}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
