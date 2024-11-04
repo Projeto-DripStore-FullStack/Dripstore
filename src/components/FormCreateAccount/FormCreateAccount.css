@@ -1,0 +1,76 @@
+.body-create-account-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f8fe;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+    font-family: 'inter', sans-serif;
+}
+
+.forms-page-create-account {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adiciona espaçamento de 20px entre as divs principais */
+}
+
+.div-form-my-info, .div-form-my-adress {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.title-my-info-page-create-account {
+    font-family: 'inter', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid #CCCCCC;
+    padding: 15px 0; 
+}
+
+.inputs-form-page-create-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 15px; /* Adiciona espaçamento de 5px entre cada input */
+}
+
+.input-checkbox-create-account {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+}
+
+.checkbox-container {
+    width: 30px;
+    height: 30px;
+}
+
+#checkbox {
+    width: 30px;
+    height: 30px;
+}
+
+.span-container {
+    font-family: 'inter', sans-serif;
+}
+
+.form-create-account-btn {
+    background-color: rgb(201, 32, 113);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 700px;
+}

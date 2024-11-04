@@ -9,7 +9,7 @@ export const FormCrieSuaConta = () => {
         <h3 className="titleFormformAcessarConta">Crie Sua Conta</h3>
         <p className="pFormformAcessarConta">
           Já possui uma conta? Então entre{" "}
-          <a className="aForm3" href="/Login">
+          <a className="aForm3" href="/CreateAccount">
             aqui.
           </a>
         </p>
