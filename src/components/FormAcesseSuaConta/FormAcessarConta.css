@@ -67,6 +67,7 @@
 
 .divBaseFormformAcessarConta {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
@@ -77,14 +78,11 @@
   width: 40px;
 }
 
-/* Smartphones */
+/* Smartphones 375px */
 @media (max-width: 375px) {
   .formAcessarContaBox{
     height: 90%;
     width: 80%;
-  }
-  .divBaseFormformAcessarConta{
-    display: flex;
   }
   .titleFormformAcessarConta{
     font-size: 1.1rem;
@@ -96,10 +94,24 @@
     font-size: 0.7rem;
     color: #666666;
     text-align: center;
-    /* padding-bottom: 2vh; */
   }
-  .divBaseFormformAcessarConta{
-    display: flex;
-    flex-direction: column;
+}
+
+/* Smartphones 425px */
+@media (max-width: 425px) {
+  .formAcessarContaBox{
+    height: 90%;
+    width: 80%;
+  }
+  .titleFormformAcessarConta{
+    font-size: 1.1rem;
+    text-align: center;
+    letter-spacing: 0.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .pFormformAcessarConta{
+    font-size: 0.7rem;
+    color: #666666;
+    text-align: center;
   }
 }
