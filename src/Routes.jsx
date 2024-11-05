@@ -12,6 +12,7 @@ import ProductDetail from "./pages/ProductDetail"
 import ProductList from "./pages/ProductList";
 import Footer from "./components/Footer/Footer";
 import MyInfo from "./pages/MyInfo";
+import CreateAccount from "./pages/CreateAccount";
 
 function AppRoutes(){
   return(
@@ -30,6 +31,7 @@ function AppRoutes(){
         <Route path="/Success" element={<Success />}></Route>
         <Route path="/ProductList" element={<ProductList/>}></Route>
         <Route path="/MyInfo" element={<MyInfo/>}></Route>
+        <Route path="/CreateAccount" element={<CreateAccount/>}></Route>
       </Routes>
     </BrowserRouter>
   )
