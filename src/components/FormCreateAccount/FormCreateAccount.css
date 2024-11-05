@@ -17,7 +17,18 @@
     gap: 20px; /* Adiciona espaçamento de 20px entre as divs principais */
 }
 
-.div-form-my-info, .div-form-my-adress {
+.div-form-my-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.div-form-my-address {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
