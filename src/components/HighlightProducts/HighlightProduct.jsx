@@ -12,13 +12,6 @@ export const HighlightProduct = () => {
       </div>
       <div className="product-highlights-gallery">
         <Produto/>
-        <Produto/>
-        <Produto/>
-        <Produto/>
-        <Produto/>
-        <Produto/>
-        <Produto/>
-        <Produto/>
       </div>
     </div>
   )

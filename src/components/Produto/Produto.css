@@ -6,10 +6,13 @@
 
 .card-produto{
     font-family: "inter", sans-serif;
-    display: flex;
-    flex-direction: column;
-    width: 23%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    flex-wrap: wrap;
     margin-bottom: 2rem;
+    justify-content: space-between;
+    flex: auto;
+    gap: 1rem;
 }
 
 .product-board {
@@ -61,7 +64,7 @@
 .product-preco{
     display: flex;
     gap: .8rem;
-    
+    margin-bottom: 2rem;
 }
 
 .product-full{
