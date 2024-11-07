@@ -1,8 +1,19 @@
+import { useNavigate } from "react-router-dom";
 import RedesSociaisDeAcesso from "../../assets/RedesSociaisDeAcesso.png";
 import { InputParaForm } from "../InputParaForm/InputParaForm";
 import "./FormCrieSuaConta.css";
 
 export const FormCrieSuaConta = () => {
+  const navigate = useNavigate();
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleAcessarConta = () => {
+    navigate(`/CreateAccount`);
+  };
+
   return (
     <>
       <div className="formAcessarContaBox">
@@ -19,7 +30,12 @@ export const FormCrieSuaConta = () => {
             placeholder="Insira seu login ou email"
           />
         </div>
-        <button className="btnFormformAcessarConta">Acessar Conta</button>
+        <button
+          className="btnFormformAcessarConta"
+          onClick={handleAcessarConta}
+        >
+          Acessar Conta
+        </button>
         <div className="divBaseFormformAcessarConta">
           <p className="pFormformAcessarConta">Ou faça Login Com</p>
           <img
