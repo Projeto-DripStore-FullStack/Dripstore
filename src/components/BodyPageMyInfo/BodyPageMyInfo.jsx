@@ -1,10 +1,12 @@
 import "./BodyPageMyInfo.css";
 
+import { SideMenuOrders } from "../SideMenuOrders/SideMenuOrders";
+
 export const BodyPageMyInfo = () => {
   return (
     <>
       <div className="bodyMyMyInfo">
-        <div className="sideBarMenu">
+        {/* <div className="sideBarMenu">
           <div className="divLinkToPagesMyInfo">
             <a className="linkToPagesMyInfo" href="">
               Meu Perfil
@@ -28,7 +30,8 @@ export const BodyPageMyInfo = () => {
               Métodos de Pagamento
             </a>
           </div>
-        </div>
+        </div> */}
+        <SideMenuOrders />
 
         <div className="divViewMyInfoCar">
           <div className="divViewMyInfoCarTitle">

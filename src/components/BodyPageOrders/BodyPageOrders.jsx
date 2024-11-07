@@ -1,36 +1,13 @@
 import "./BodyPageOrders.css";
 import WhiteSneakers from "../../assets/White-Sneakers.png";
 
+import { SideMenuOrders } from "../SideMenuOrders/SideMenuOrders";
+
 export const BodyPageOrders = () => {
   return (
     <>
       <div className="bodyMyOrders">
-        <div className="sideBarMenu">
-          <div className="divLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="">
-              Meu Perfil
-            </a>
-          </div>
-          <br />
-          <div className="divLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="/Orders">
-              Meus Pedidos
-            </a>
-          </div>
-          <br />
-          <div className="divLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="/MyInfo">
-              Minhas Informações
-            </a>
-          </div>
-          <br />
-          <div className="lastDivLinkToPagesOrders">
-            <a className="linkToPagesOrders" href="">
-              Métodos de Pagamento
-            </a>
-          </div>
-        </div>
-
+        <SideMenuOrders/>
         <div className="divViewOrdersCar">
           <div className="divViewOrdersCarTitle">
             <p className="viewOrdersCarTitle">Meus Pedidos</p>

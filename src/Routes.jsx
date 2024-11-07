@@ -4,7 +4,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login"
 import Success from "./pages/Success";
 import Profile from "./pages/Profile";
-import Products from "./pages/Products"
 import Cart from "./pages/Cart"
 import Confirm from "./pages/Confirm"
 import Orders from "./pages/Orders"
@@ -22,7 +21,6 @@ function AppRoutes(){
         <Route path="/Footer" element={<Footer />}></Route>
         <Route path="/Register" element={<Register />}></Route>
         <Route path="/Login" element={<Login />}></Route>
-        <Route path="/Products" element={<Products />}></Route>
         <Route path="/Cart" element={<Cart />}></Route>
         <Route path="/Confirm" element={<Confirm />}></Route>
         <Route path="/Orders" element={<Orders />}></Route>

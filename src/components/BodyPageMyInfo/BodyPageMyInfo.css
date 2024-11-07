@@ -1,5 +1,6 @@
 .bodyMyMyInfo {
     display: flex;
+    gap: 1rem;
     background-color: #f9f8fe;
     width: 100%;
     padding: 50px;
@@ -45,6 +46,7 @@
     background-color: white;
     width: 1000px;
     height: 600px;
+    flex: 3;
     justify-content: space-around;
     height: 400px;
     padding: 30px;
