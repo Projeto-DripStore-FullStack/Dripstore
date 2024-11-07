@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import KSwiss from "../../assets/KSwiss.png";
 import "./Produto.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Produto() {
   const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
 
   const getProduct = async () => {
     try {
@@ -24,10 +26,15 @@ function Produto() {
   useEffect(() => {
     getProduct();
   }, []);
+
+  const handleProductClick = (produtoId) => {
+    navigate(`/Cart/getOne/${produtoId}`); 
+  };
+
   return (
     <div className="card-produto">
       {produtos.map((produto, index) => (
-        <div>
+        <div key={produto.id} onClick={() => handleProductClick(produto.id)}>
           <div className="product-board">
             <div className="product-discount">{produto.promotion}% Off</div>
             <img src={KSwiss} alt="" className="product-image" />
