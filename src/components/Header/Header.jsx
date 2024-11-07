@@ -4,7 +4,6 @@ import Buy from "../../assets/Buy.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import "./Header.css";
-import LayoutPadrao from "../LayoutPadrao/LayoutPadrao";
 
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
