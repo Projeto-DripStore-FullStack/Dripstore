@@ -49,7 +49,7 @@ export const Header = () => {
           )}
           
         </button>
-        <Link to="/">
+        <Link to="/Home">
           <img src={logo} alt="Logotipo digital store" className="logo-digital"/>
         </Link>
         <div className="divInputSearchHeader">
@@ -92,7 +92,7 @@ export const Header = () => {
         <navbar className="navbarHeader">
           <ul className="menu-header">
             <li className="LinkNavbar">
-              <Link className="linkNavbarHeader" to="/">
+              <Link className="linkNavbarHeader" to="/Home">
                 Home
               </Link>
             </li>
