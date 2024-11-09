@@ -27,7 +27,7 @@ export const FormAcessarConta = () => {
       // Armazene os dados do usuário no localStorage
       localStorage.setItem("usuarioLogado", JSON.stringify(response.data));
 
-      navigate("/");
+      navigate("/Home");
     } catch (error) {
       console.error("Erro ao acessar a conta:", error);
       alert(

@@ -4,7 +4,9 @@ import "./AsideFilter.css";
 
 export const AsideFilter = () => {
   const [produtos, setProdutos] = useState([]);
+  const [categoriasFuncao, setCategoriasFuncao] = useState([]);
 
+  // Função para buscar produtos
   const getProduct = async () => {
     try {
       const response = await axios.get("http://localhost:3000/produtos");
@@ -20,15 +22,35 @@ export const AsideFilter = () => {
     }
   };
 
+  // Função para buscar as categorias de função
+  const getCategoriasFuncao = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3000/categoriasFuncaoPeca"
+      );
+      const categoriasData = response.data;
+
+      if (Array.isArray(categoriasData)) {
+        setCategoriasFuncao(
+          categoriasData.map((categoria) => categoria.funcao)
+        );
+      } else {
+        console.error("Expected an array but got:", categoriasData);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar as categorias de função:", error);
+    }
+  };
+
   useEffect(() => {
     getProduct();
+    getCategoriasFuncao();
   }, []);
 
-  // Verificando se os produtos e as categorias estão definidos corretamente
+  // Dados de filtro
   const marcas = [...new Set(produtos.map((produto) => produto.marca))];
   const genero = [...new Set(produtos.map((produto) => produto.genero))];
   const tamanho = [...new Set(produtos.map((produto) => produto.tamanho))];
-  const categorias = [...new Set(produtos.map((produto) => produto.categoria))];
 
   return (
     <aside className="product-list-filter">
@@ -43,9 +65,9 @@ export const AsideFilter = () => {
         ))}
 
         <p>Categoria</p>
-        {categorias.map((categoria, index) => (
+        {categoriasFuncao.map((categoria, index) => (
           <label key={index}>
-            <input type="checkbox" name="categoria" value={categoria} />
+            <input type="checkbox" name="categoriaFuncao" value={categoria} />
             {categoria}
           </label>
         ))}
