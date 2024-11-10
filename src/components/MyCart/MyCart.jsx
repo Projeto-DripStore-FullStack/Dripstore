@@ -1,19 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import WhiteNike5 from "../../assets/white-nike-5.png";
 import axios from "axios";
 import "./MyCart.css";
 
 const MyCart = () => {
-  const { produtoId } = useParams(); 
-  const [produto, setProduto] = useState(null); 
+  const { produtoId } = useParams();
+  const [produto, setProduto] = useState(null);
+  const [quantidade, setQuantidade] = useState(1);
+  const navigate = useNavigate(); 
 
   const getProductById = async (id) => {
     try {
       const response = await axios.get(
         `http://localhost:3000/produtos/getOne/${id}`
       );
-      setProduto(response.data); 
+      setProduto(response.data);
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
     }
@@ -25,7 +27,16 @@ const MyCart = () => {
     }
   }, [produtoId]);
 
+  const handleQuantidadeChange = (e) => {
+    setQuantidade(Number(e.target.value));
+  };
+
   if (!produto) return <div>Carregando...</div>;
+
+  // Convertendo produto.price para número e usando .toFixed() no valor
+  const price = parseFloat(produto.price);
+  const formattedPrice = price ? price.toFixed(2) : "0.00";
+  const total = (price * quantidade).toFixed(2);
 
   return (
     <main className="my-cart">
@@ -42,38 +53,22 @@ const MyCart = () => {
             <p className="cart-product-name">{produto.title}</p>{" "}
             <p className="cart-product-color">
               <span>Cor: </span>
-              {produto.color} 
+              {produto.cor}
             </p>
             <p className="cart-product-size">
               <span>Tamanho: </span>
-              {produto.size} 
+              {produto.tamanho}
             </p>
           </div>
         </div>
         <div className="cart-quantity">
-          <input type="number" min="1" placeholder="Quantidade" />{" "}
+          <input type="number" min="1" placeholder="Quantidade" onChange={handleQuantidadeChange} value={quantidade} />{" "}
         </div>
         <div className="cart-unities">
-          <p>{produto.price}</p>
+          <p>R$ {formattedPrice}</p>
         </div>
         <div className="cart-total">
-          <p>{produto.price}</p>{" "}
-        </div>
-      </div>
-      <div className="my-cart-discount-and-track">
-        <div className="cart-coupon">
-          <form action="">
-            <p>Cupom de desconto</p>
-            <input type="text" placeholder="Insira seu código" />
-            <button type="submit">OK</button>
-          </form>
-        </div>
-        <div className="cart-track">
-          <form action="">
-            <p>Calcular Frete</p>
-            <input type="text" placeholder="Insira seu CEP" />
-            <button type="submit">OK</button>
-          </form>
+          <p>R$ {total}</p>
         </div>
       </div>
     </main>

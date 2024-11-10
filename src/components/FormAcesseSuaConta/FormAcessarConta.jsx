@@ -26,6 +26,8 @@ export const FormAcessarConta = () => {
 
       // Armazene os dados do usuário no localStorage
       localStorage.setItem("usuarioLogado", JSON.stringify(response.data));
+      console.log("Dados do usuário armazenados:", response.data);
+      
 
       navigate("/Home");
     } catch (error) {

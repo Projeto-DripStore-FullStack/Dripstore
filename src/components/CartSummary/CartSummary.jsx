@@ -1,26 +1,28 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./CartSummary.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CartSummary = ({ quantidade }) => {
   const { produtoId } = useParams();
   const [produto, setProduto] = useState(null);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const getProductById = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/produtos/getOne/${id}`
-      );
-      console.log("Produto retornado:", response.data); // Verifique a resposta da API
+      axios.post('http://localhost:3000/pedidos', request, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      console.log("Produto retornado:", response.data);
       setProduto(response.data);
-      setError(null); // Limpa o erro em caso de sucesso
+      setError(null);
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
-      setError(
-        "Erro ao buscar os dados do produto. Tente novamente mais tarde."
-      );
+      setError("Erro ao buscar os dados do produto. Tente novamente mais tarde.");
     }
   };
 
@@ -30,19 +32,46 @@ const CartSummary = ({ quantidade }) => {
     }
   }, [produtoId]);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  const precoUnitario = produto?.price && !isNaN(parseFloat(produto.price)) ? parseFloat(produto.price) : 0;
+  const subtotal = precoUnitario * (quantidade || 1); // Using the prop directly
 
-  if (!produto) {
-    return <div>Carregando...</div>;
-  }
-
-  const precoUnitario = produto.price;
-  const subtotal = precoUnitario * quantidade;
-  const desconto = produto.discount || 0;
-  const totalDesconto = desconto * quantidade;
+  const desconto = produto?.promotion && !isNaN(parseFloat(produto.promotion)) ? parseFloat(produto.promotion) : 0;
+  const totalDesconto = desconto * (quantidade || 1);
   const total = subtotal - totalDesconto;
+  
+  const valorPedido = isNaN(total) ? 0 : total;
+
+  const handleConfirmarCompra = async () => {
+    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+
+    if (!usuario || (!usuario.id && !usuario.cpf && !usuario.email)) {
+      alert("Você precisa estar logado para finalizar a compra.");
+      return;
+    }
+
+    const numeroPedido = `PED${Date.now()}`;
+
+    const request = {
+      numeroPedido: numeroPedido,
+      formapagamento: "Débito",
+      valorpedido: parseFloat(valorPedido.toFixed(2)),
+      status: "Encaminhado",
+      usuario: {
+        connect: {
+          id: usuario.id, // Garantir que o ID do usuário seja passado corretamente
+        },
+      },
+    };
+
+    try {
+      await axios.post("http://localhost:3000/pedidos", request);
+      alert("Compra realizada com sucesso!");
+      navigate(`/Orders/${numeroPedido}`);
+    } catch (e) {
+      console.log("Erro ao criar pedido", e);
+      alert("Erro ao realizar a compra. Tente novamente.");
+    }
+  };
 
   return (
     <main className="cart-summary">
@@ -58,22 +87,6 @@ const CartSummary = ({ quantidade }) => {
             <p className="value">R$ {subtotal.toFixed(2)}</p>
           </div>
         </div>
-        <div className="cart-summary-track">
-          <div className="track">
-            <p>
-              <span>Frete:</span>
-            </p>
-            <p className="value">R$ 0,00</p>
-          </div>
-        </div>
-        <div className="cart-summary-discount">
-          <div className="discount">
-            <p>
-              <span>Desconto:</span>
-            </p>
-            <p className="value">R$ {totalDesconto.toFixed(2)}</p>
-          </div>
-        </div>
         <div className="cart-summary-total">
           <div className="total">
             <h3>
@@ -85,10 +98,11 @@ const CartSummary = ({ quantidade }) => {
             </div>
           </div>
         </div>
-        <button>Continuar</button>
+        <button onClick={handleConfirmarCompra}>Comprar</button>
       </div>
     </main>
   );
 };
 
 export default CartSummary;
+
