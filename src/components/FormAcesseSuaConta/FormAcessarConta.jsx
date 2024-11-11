@@ -14,13 +14,22 @@ export const FormAcessarConta = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/usuarios/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "http://localhost:3000/usuarios/login",
+        {
+          email,
+          password,
+        }
+      );
 
       console.log("Usuário autenticado:", response.data);
-      navigate("/");
+
+      // Armazene os dados do usuário no localStorage
+      localStorage.setItem("usuarioLogado", JSON.stringify(response.data));
+      console.log("Dados do usuário armazenados:", response.data);
+      
+
+      navigate("/Home");
     } catch (error) {
       console.error("Erro ao acessar a conta:", error);
       alert(

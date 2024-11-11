@@ -17,11 +17,12 @@ function AppRoutes(){
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Login />}></Route>
+        <Route path="/Home" element={<Home />}></Route>
         <Route path="/Footer" element={<Footer />}></Route>
         <Route path="/Register" element={<Register />}></Route>
         <Route path="/Login" element={<Login />}></Route>
-        <Route path="/Cart" element={<Cart />}></Route>
+        <Route path="/Cart/getOne/:produtoId" element={<Cart />}></Route>
         <Route path="/Confirm" element={<Confirm />}></Route>
         <Route path="/Orders" element={<Orders />}></Route>
         <Route path="/ProductDetail" element={<ProductDetail />}></Route>
