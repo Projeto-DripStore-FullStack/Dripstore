@@ -20,6 +20,7 @@
   justify-content: space-between;
   gap: 3rem;
   align-items: center;
+  position: relative;
 }
 
 .header-bottom-area {
@@ -205,6 +206,27 @@
 
 .search-mobile{
   display: none;
+}
+
+.my-cart-modal{
+  position: absolute;
+  background-color: #fff;
+  left: 82%;
+  top: 70%;
+  padding: 2rem;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  font-family: 'inter', sans-serif;
+}
+
+.cart-modal-title{
+  margin-bottom: 1rem;
+}
+
+.cart-products{
+  padding: 1rem 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
 }
 
 @media (min-width: 320px) and (max-width: 480px) {

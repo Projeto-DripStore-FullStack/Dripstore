@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useEffect, useState } from "react";
 import KSwiss from "../../assets/KSwiss.png";
 import "./Produto.css";

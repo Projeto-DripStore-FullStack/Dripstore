@@ -81,6 +81,43 @@ export const Header = () => {
         <button className="buyButton">
           <img src={Buy} alt="" />
         </button>
+        <div className="my-cart-modal">
+          <h4 className="cart-modal-title">Meu carrinho</h4>
+          <div className="cart-products">
+            <div className="cart-product">
+              <div className="cart-product-img">
+                 <img src="" alt="" />
+              </div>
+              <div>
+                <h4 className="cart-product-description">Tênis Nike Revolution 6 Next Nature Masculino</h4>
+                <div className="cart-product-price">
+                  <h3>R$ 219,00</h3>
+                  <p>R$ 219,00</p>
+                </div>
+              </div>
+            </div>
+            <div className="cart-product">
+              <div className="cart-product-img">
+                 <img src="" alt="" />
+              </div>
+              <div>
+                <h4 className="cart-product-description">Tênis Nike Revolution 6 Next Nature Masculino</h4>
+                <div className="cart-product-price">
+                  <h3>R$ 219,00</h3>
+                  <p>R$ 219,00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="total-cart-value">
+              <h4>Valor Total:</h4>
+              <h4>R$ 219,00</h4>
+            </div>
+            <div>
+              <Link>Esvaziar</Link>
+              <button>Ver Carrinho</button>
+            </div>
+        </div>
       </div>
       {searchOpen && (<input
           type="text"
