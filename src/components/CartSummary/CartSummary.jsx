@@ -9,22 +9,15 @@ const CartSummary = ({ quantidade }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const getProductById = async (id) => {
+  async function getProductById(productId) {
     try {
-      axios.post('http://localhost:3000/pedidos', request, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      console.log("Produto retornado:", response.data);
-      setProduto(response.data);
-      setError(null);
+      const response = await axios.get(`/api/produtos/${productId}`);
+      return response.data;
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
-      setError("Erro ao buscar os dados do produto. Tente novamente mais tarde.");
     }
-  };
+  }
+  
 
   useEffect(() => {
     if (produtoId) {
