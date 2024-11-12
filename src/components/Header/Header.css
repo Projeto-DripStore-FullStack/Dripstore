@@ -20,6 +20,7 @@
   justify-content: space-between;
   gap: 3rem;
   align-items: center;
+  position: relative;
 }
 
 .header-bottom-area {

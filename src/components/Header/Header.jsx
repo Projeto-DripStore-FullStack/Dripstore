@@ -3,6 +3,7 @@ import search from "../../assets/Search.png";
 import Buy from "../../assets/Buy.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ModalCart } from "./ModalCart/ModalCart";
 import "./Header.css";
 
 export const Header = () => {
@@ -11,6 +12,11 @@ export const Header = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
+
+  const [isModalCartVisible, setModalCartVisible] = useState(false)
+
+  const showModalCart = () => setModalCartVisible(true)
+  const hideModalCart = () => setModalCartVisible(false)
 
   return (
     <header className="header-container">
@@ -78,9 +84,13 @@ export const Header = () => {
         <Link to="/Login" className="btnLogin">
           <button className="loginButton">Entrar</button>
         </Link>
-        <button className="buyButton">
+        <button className="buyButton" onMouseEnter={showModalCart} onMouseLeave={hideModalCart}>
           <img src={Buy} alt="" />
         </button>
+        {isModalCartVisible && (
+          <ModalCart/>
+        )}
+        
       </div>
       {searchOpen && (<input
           type="text"
