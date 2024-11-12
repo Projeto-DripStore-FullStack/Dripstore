@@ -89,7 +89,7 @@ export const Header = () => {
         />
       )}
       <div className="header-bottom-area">
-        <navbar className="navbarHeader">
+        <nav className="navbarHeader">
           <ul className="menu-header">
             <li className="LinkNavbar">
               <Link className="linkNavbarHeader" to="/Home">
@@ -112,7 +112,7 @@ export const Header = () => {
               </Link>
             </li>
           </ul>
-        </navbar>
+        </nav>
 
       </div>
     </header>
