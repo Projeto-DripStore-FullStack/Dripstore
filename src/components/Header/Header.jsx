@@ -3,6 +3,7 @@ import search from "../../assets/Search.png";
 import Buy from "../../assets/Buy.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ModalCart } from "./ModalCart/ModalCart";
 import "./Header.css";
 
 export const Header = () => {
@@ -11,6 +12,11 @@ export const Header = () => {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
+
+  const [isModalCartVisible, setModalCartVisible] = useState(false)
+
+  const showModalCart = () => setModalCartVisible(true)
+  const hideModalCart = () => setModalCartVisible(false)
 
   return (
     <header className="header-container">
@@ -78,46 +84,13 @@ export const Header = () => {
         <Link to="/Login" className="btnLogin">
           <button className="loginButton">Entrar</button>
         </Link>
-        <button className="buyButton">
+        <button className="buyButton" onMouseEnter={showModalCart} onMouseLeave={hideModalCart}>
           <img src={Buy} alt="" />
         </button>
-        <div className="my-cart-modal">
-          <h4 className="cart-modal-title">Meu carrinho</h4>
-          <div className="cart-products">
-            <div className="cart-product">
-              <div className="cart-product-img">
-                 <img src="" alt="" />
-              </div>
-              <div>
-                <h4 className="cart-product-description">Tênis Nike Revolution 6 Next Nature Masculino</h4>
-                <div className="cart-product-price">
-                  <h3>R$ 219,00</h3>
-                  <p>R$ 219,00</p>
-                </div>
-              </div>
-            </div>
-            <div className="cart-product">
-              <div className="cart-product-img">
-                 <img src="" alt="" />
-              </div>
-              <div>
-                <h4 className="cart-product-description">Tênis Nike Revolution 6 Next Nature Masculino</h4>
-                <div className="cart-product-price">
-                  <h3>R$ 219,00</h3>
-                  <p>R$ 219,00</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="total-cart-value">
-              <h4>Valor Total:</h4>
-              <h4>R$ 219,00</h4>
-            </div>
-            <div>
-              <Link>Esvaziar</Link>
-              <button>Ver Carrinho</button>
-            </div>
-        </div>
+        {isModalCartVisible && (
+          <ModalCart/>
+        )}
+        
       </div>
       {searchOpen && (<input
           type="text"
