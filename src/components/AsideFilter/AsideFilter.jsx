@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./AsideFilter.css";
 
-export const AsideFilter = () => {
+export const AsideFilter = ({ onFilterChange }) => {
   const [produtos, setProdutos] = useState([]);
   const [categoriasFuncao, setCategoriasFuncao] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState({
+    marca:[],
+    categoriaFuncao: [],
+    genero:[],
+    tamanho:[],
+  });
 
-  // Função para buscar produtos
   const getProduct = async () => {
     try {
       const response = await axios.get("http://localhost:3000/produtos");
@@ -22,7 +27,6 @@ export const AsideFilter = () => {
     }
   };
 
-  // Função para buscar as categorias de função
   const getCategoriasFuncao = async () => {
     try {
       const response = await axios.get(
@@ -47,10 +51,23 @@ export const AsideFilter = () => {
     getCategoriasFuncao();
   }, []);
 
-  // Dados de filtro
   const marcas = [...new Set(produtos.map((produto) => produto.marca))];
   const genero = [...new Set(produtos.map((produto) => produto.genero))];
   const tamanho = [...new Set(produtos.map((produto) => produto.tamanho))];
+
+  const handleFilterChange = (category, value) => {
+    const updatedFilters = { ...selectedFilters };
+    const filterList = updatedFilters[category];
+
+    if (filterList.includes(value)) {
+      updatedFilters[category] = filterList.filter(item => item !== value);
+    } else {
+      updatedFilters[category].push(value);
+    }
+
+    setSelectedFilters(updatedFilters);
+    onFilterChange(updatedFilters);
+  };
 
   return (
     <aside className="product-list-filter">
@@ -59,7 +76,7 @@ export const AsideFilter = () => {
         <p>Marca</p>
         {marcas.map((marca, index) => (
           <label key={index}>
-            <input type="checkbox" name="marca" value={marca} />
+            <input type="checkbox" name="marca" value={marca} onChange={() => handleFilterChange("marca", marca)}/>
             {marca}
           </label>
         ))}
@@ -67,7 +84,7 @@ export const AsideFilter = () => {
         <p>Categoria</p>
         {categoriasFuncao.map((categoria, index) => (
           <label key={index}>
-            <input type="checkbox" name="categoriaFuncao" value={categoria} />
+            <input type="checkbox" name="categoriaFuncao" value={categoria} onChange={() => handleFilterChange("categoriaFuncao", categoria)}/>
             {categoria}
           </label>
         ))}
@@ -75,7 +92,7 @@ export const AsideFilter = () => {
         <p>Gênero</p>
         {genero.map((genero, index) => (
           <label key={index}>
-            <input type="checkbox" name="genero" value={genero} />
+            <input type="checkbox" name="genero" value={genero} onChange={() => handleFilterChange("genero", genero)}/>
             {genero}
           </label>
         ))}
@@ -83,7 +100,7 @@ export const AsideFilter = () => {
         <p>Tamanho</p>
         {tamanho.map((tamanho, index) => (
           <label key={index}>
-            <input type="checkbox" name="tamanho" value={tamanho} />
+            <input type="checkbox" name="tamanho" value={tamanho} onChange={() => handleFilterChange("tamanho", tamanho)}/>
             {tamanho}
           </label>
         ))}

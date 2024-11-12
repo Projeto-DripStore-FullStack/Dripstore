@@ -5,12 +5,11 @@ import "./Produto.css";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
-function Produto() {
+function Produto({ filters }) {
   const [produtos, setProdutos] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Extrai o id da categoria da URL
   const searchParams = new URLSearchParams(location.search);
   const categoriaPecaId = searchParams.get("categoriaPeca_id");
 
@@ -20,11 +19,13 @@ function Produto() {
       const produtosData = response.data;
 
       if (Array.isArray(produtosData)) {
-        // Filtra os produtos com base no id da categoria
         const produtosFiltrados = categoriaPecaId
-          ? produtosData.filter(produto => produto.categoriaPeca_id === parseInt(categoriaPecaId))
+          ? produtosData.filter(
+              (produto) =>
+                produto.categoriaPeca_id === parseInt(categoriaPecaId)
+            )
           : produtosData;
-        
+
         setProdutos(produtosFiltrados);
       } else {
         console.error("Expected an array but got:", produtosData);
@@ -36,29 +37,44 @@ function Produto() {
 
   useEffect(() => {
     getProduct();
-  }, [categoriaPecaId]); // Atualiza os produtos ao alterar a categoria
+  }, [categoriaPecaId]);
+  
+  const filteredProducts = produtos.filter((produto) => {
+    return (
+      (!filters?.marca || (filters.marca.length === 0 || filters.marca.includes(produto.marca))) &&
+      (!filters?.categoriaFuncao || (filters.categoriaFuncao.length === 0 || filters.categoriaFuncao.includes(produto.categoriaFuncao))) &&
+      (!filters?.genero || (filters.genero.length === 0 || filters.genero.includes(produto.genero))) &&
+      (!filters?.tamanho || (filters.tamanho.length === 0 || filters.tamanho.includes(produto.tamanho)))
+    );
+  });  
 
   const handleProductClick = (produtoId) => {
-    navigate(`/Cart/getOne/${produtoId}`); 
+    navigate(`/Cart/getOne/${produtoId}`);
   };
 
   return (
     <div className="card-produto">
-      {produtos.map((produto) => (
+    {filteredProducts.length > 0 ? (
+      filteredProducts.map((produto) => (
         <div key={produto.id} onClick={() => handleProductClick(produto.id)}>
           <div className="product-board">
             <div className="product-discount">{produto.promotion}% Off</div>
             <img src={KSwiss} alt="" className="product-image" />
           </div>
           <p className="product-categoria">{produto.title}</p>
-          <p className="product-nome">{produto.subtitle} - {produto.genero}</p>
+          <p className="product-nome">
+            {produto.subtitle} - {produto.genero}
+          </p>
           <div className="product-preco">
             <p className="product-full">${produto.price}</p>
-            <p className="product-oferta">$100</p>
+            <p className="product-oferta">${produto.price * (1 - produto.promotion * 0.01)}</p>
           </div>
         </div>
-      ))}
-    </div>
+      ))
+    ) : (
+      <p>Nenhum produto encontrado com os filtros selecionados.</p>
+    )}
+  </div>
   );
 }
 
