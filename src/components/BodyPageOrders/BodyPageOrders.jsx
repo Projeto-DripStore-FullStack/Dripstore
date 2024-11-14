@@ -10,17 +10,12 @@ export const BodyPageOrders = () => {
   const [pedido, setPedido] = useState(null);
   const [error, setError] = useState(null);
 
-  // Função para obter o id do usuário logado
-  const getUsuarioId = () => {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-    return usuarioLogado?.id;
-  };
-
   const getPedidoById = async (id, userId) => {
     try {
       const response = await axios.get(`http://localhost:3000/pedidos/getOne/${id}`, {
-        params: { userId } // Enviar o id do usuário como parâmetro
+        params: { userId } 
       });
+      
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar o pedido:", error);
@@ -30,13 +25,8 @@ export const BodyPageOrders = () => {
 
   useEffect(() => {
     const fetchPedido = async () => {
-      const userId = getUsuarioId(); // Obtém o id do usuário
-      if (!userId) {
-        setError("Usuário não autenticado");
-        return;
-      }
-      const idToFetch = pedidoId || 1;
-      const pedidoData = await getPedidoById(idToFetch, userId);
+      const idToFetch = pedidoId ;
+      const pedidoData = await getPedidoById(idToFetch);
 
       if (pedidoData) {
         setPedido(pedidoData);
