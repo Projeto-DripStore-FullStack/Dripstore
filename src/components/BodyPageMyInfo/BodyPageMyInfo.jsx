@@ -24,13 +24,10 @@ export const BodyPageMyInfo = () => {
   return (
     <div className="bodyMyMyInfo">
       <SideMenuOrders />
-
       <div className="divViewMyInfoCar">
         <div className="divViewMyInfoCarTitle">
           <p className="viewMyInfoCarTitle">Meus Pedidos</p>
-          <a className="viewMyInfoCarLinks" href="/Cart">
-            Editar
-          </a>
+          <a className="viewMyInfoCarLinks" href="/Cart">Editar</a>
         </div>
 
         <div className="div-my-personal-info">
@@ -40,20 +37,16 @@ export const BodyPageMyInfo = () => {
           {userInfo ? (
             <>
               <p style={{ marginBottom: "8px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>CPF:</span>{" "}
-                {userInfo.cpf}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>CPF:</span> {userInfo.cpf}
               </p>
               <p style={{ marginBottom: "8px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Email:</span>{" "}
-                {userInfo.email}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Email:</span> {userInfo.email}
               </p>
               <p style={{ marginBottom: "8px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Nome:</span>{" "}
-                {userInfo.nome}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Nome:</span> {userInfo.nome}
               </p>
               <p style={{ marginBottom: "8px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span>{" "}
-                {userInfo.celular}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span> {userInfo.celular}
               </p>
             </>
           ) : (
@@ -68,20 +61,16 @@ export const BodyPageMyInfo = () => {
           {userInfo ? (
             <>
               <p style={{ marginBottom: "4px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Endereço:</span>{" "}
-                {userInfo.endereco}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Endereço:</span> {userInfo.endereco}
               </p>
               <p style={{ marginBottom: "4px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Bairro:</span>{" "}
-                {userInfo.bairro}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Bairro:</span> {userInfo.bairro}
               </p>
               <p style={{ marginBottom: "4px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Cidade:</span>{" "}
-                {userInfo.cidade}, {userInfo.estado}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Cidade:</span> {userInfo.cidade}, {userInfo.estado}
               </p>
               <p style={{ marginBottom: "4px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>CEP:</span>{" "}
-                {userInfo.cep}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>CEP:</span> {userInfo.cep}
               </p>
             </>
           ) : (
