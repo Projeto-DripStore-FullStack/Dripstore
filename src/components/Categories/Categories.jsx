@@ -6,6 +6,7 @@ import "./Categories.css";
 import TShirt from "../../assets/Tshirt.png";
 import Pants from "../../assets/Pants.png";
 import Sneakers from "../../assets/sneakers.png";
+import Bone from "../../assets/bone.png";
 import Headphones from "../../assets/Headphones.png";
 
 export const Categories = () => {
@@ -13,10 +14,11 @@ export const Categories = () => {
   const navigate = useNavigate(); // Inicialize o useNavigate
 
   const imageMapping = {
-    Camiseta: TShirt,
+    Camisetas: TShirt,
     Calças: Pants,
-    "Tênis": Sneakers,
-    "Fones": Headphones,
+    Tenis: Sneakers,
+    Bonés: Bone,
+    Fones: Headphones
   };
 
   const getCategoriaPecas = async () => {
@@ -48,7 +50,7 @@ export const Categories = () => {
       {categorias.map((categoria, index) => (
         <CardCategories
         key={index}
-        img={imageMapping[categoria.tipo] || TShirt}
+        img={imageMapping[categoria.tipo]}
         alt={categoria.tipo}
         description={categoria.tipo}
         id={categoria.id}  // Passa o id da categoria
