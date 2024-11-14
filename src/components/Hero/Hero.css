@@ -7,21 +7,23 @@
 .hero-container{
   height: calc(100vh - 160px);
   background-color: #F5F5F5;
-  display: flex;
   width: 100%;
 }
 
 .hero-content{
+  position: relative;
   width: 90%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: auto;
 }
 
 .hero-text-content{
   display: flex;
-  width: 50%;
   flex-direction: column;
   justify-content: center;
+  height: calc(100vh - 160px);
+  flex: 1;
   gap: 1rem;
   font-family: 'inter', sans-serif;
 }
@@ -46,17 +48,22 @@
   margin-top: 1.5rem;
 }
 
+.hero-img-content{
+  height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
 .hero-call{
   display: flex;
   align-items: flex-end;
   font-size: 4rem;
-  position: relative;
 }
 
 .memphis-img{
-  position: relative;
-  top: -65vh;
-  right: -45vw;
+  position: absolute;
+  top:0;
+  right: 0;
   object-fit: cover;
 }
 
