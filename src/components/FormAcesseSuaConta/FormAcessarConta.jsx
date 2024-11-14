@@ -22,19 +22,12 @@ export const FormAcessarConta = () => {
         }
       );
 
-      console.log("Usuário autenticado:", response.data);
-
-      // Armazene os dados do usuário no localStorage
-      localStorage.setItem("usuarioLogado", JSON.stringify(response.data));
-      console.log("Dados do usuário armazenados:", response.data);
-      
+      localStorage.setItem("id", response.data.id);
 
       navigate("/Home");
     } catch (error) {
       console.error("Erro ao acessar a conta:", error);
-      alert(
-        error.response?.data || "Erro ao acessar a conta. Tente novamente."
-      );
+      alert(error.response?.data || "Erro ao acessar a conta. Tente novamente.");
     }
   };
 

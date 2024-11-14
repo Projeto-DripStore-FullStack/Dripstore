@@ -4,20 +4,24 @@ import "./CartSummary.css";
 import { useNavigate, useParams } from "react-router-dom";
 
 const CartSummary = ({ quantidade }) => {
+  
   const { produtoId } = useParams();
   const [produto, setProduto] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+
   async function getProductById(productId) {
     try {
-      const response = await axios.get(`/api/produtos/${productId}`);
-      return response.data;
+      console.log("Olha aqui",produtoId)
+      const response = await axios.get(`/produtos/${productId}`);
+      setProduto(response.data);
+      console.log(produto)
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
+      setError("Erro ao carregar produto.");
     }
   }
-  
 
   useEffect(() => {
     if (produtoId) {
@@ -25,46 +29,66 @@ const CartSummary = ({ quantidade }) => {
     }
   }, [produtoId]);
 
-  const precoUnitario = produto?.price && !isNaN(parseFloat(produto.price)) ? parseFloat(produto.price) : 0;
-  const subtotal = precoUnitario * (quantidade || 1); // Using the prop directly
+  const precoUnitario =
+    produto?.price && !isNaN(parseFloat(produto.price))
+      ? parseFloat(produto.price)
+      : 0;
+  const subtotal = precoUnitario * (quantidade || 1);
 
-  const desconto = produto?.promotion && !isNaN(parseFloat(produto.promotion)) ? parseFloat(produto.promotion) : 0;
+  const desconto =
+    produto?.promotion && !isNaN(parseFloat(produto.promotion))
+      ? parseFloat(produto.promotion)
+      : 0;
   const totalDesconto = desconto * (quantidade || 1);
   const total = subtotal - totalDesconto;
-  
+
   const valorPedido = isNaN(total) ? 0 : total;
 
   const handleConfirmarCompra = async () => {
-    const usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    getProductById()
+    const usuario = localStorage.getItem("id");
+    console.log(usuario);
 
-    if (!usuario || (!usuario.id && !usuario.cpf && !usuario.email)) {
+    if (!usuario) {
       alert("Você precisa estar logado para finalizar a compra.");
       return;
     }
 
     const numeroPedido = `PED${Date.now()}`;
 
+    const produtosPedido = [
+      {
+        produtoId: produto.id,
+        quantidade: quantidade || 1,
+      },
+    ];
+
     const request = {
       numeroPedido: numeroPedido,
       formapagamento: "Débito",
-      valorpedido: parseFloat(valorPedido.toFixed(2)),
+      valorpedido:valorPedido,
       status: "Encaminhado",
-      usuario: {
-        connect: {
-          id: usuario.id, // Garantir que o ID do usuário seja passado corretamente
-        },
-      },
+      usuario_id: parseFloat(usuario),
     };
 
     try {
       await axios.post("http://localhost:3000/pedidos", request);
+      console.log(request)
       alert("Compra realizada com sucesso!");
-      navigate(`/Orders/${numeroPedido}`);
+      navigate(`/Orders/getOne/${numeroPedido}`);
     } catch (e) {
       console.log("Erro ao criar pedido", e);
       alert("Erro ao realizar a compra. Tente novamente.");
     }
   };
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
+  if (!produto) {
+    return <div>Carregando...</div>;
+  }
 
   return (
     <main className="cart-summary">
@@ -77,7 +101,9 @@ const CartSummary = ({ quantidade }) => {
             <p>
               <span>Subtotal:</span>
             </p>
-            <p className="value">R$ {subtotal.toFixed(2)}</p>
+            <p className="value">
+              R$ {subtotal > 0 ? subtotal.toFixed(2) : "0.00"}
+            </p>
           </div>
         </div>
         <div className="cart-summary-total">
@@ -86,7 +112,7 @@ const CartSummary = ({ quantidade }) => {
               <span>Total</span>
             </h3>
             <div className="total-value">
-              <h3>R$ {total.toFixed(2)}</h3>
+              <h3>R$ {total > 0 ? total.toFixed(2) : "0.00"}</h3>
               <p>ou 10x de R$ {(total / 10).toFixed(2)} sem juros</p>
             </div>
           </div>
@@ -98,4 +124,3 @@ const CartSummary = ({ quantidade }) => {
 };
 
 export default CartSummary;
-
