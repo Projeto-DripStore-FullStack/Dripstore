@@ -9,7 +9,7 @@ export const AsideFilter = ({ onFilterChange }) => {
     marca:[],
     categoriaFuncao: [],
     genero:[],
-    tamanho:[],
+    estado:[],
   });
 
   const getProduct = async () => {
@@ -53,7 +53,7 @@ export const AsideFilter = ({ onFilterChange }) => {
 
   const marcas = [...new Set(produtos.map((produto) => produto.marca))];
   const genero = [...new Set(produtos.map((produto) => produto.genero))];
-  const tamanho = [...new Set(produtos.map((produto) => produto.tamanho))];
+  const estado = [...new Set(produtos.map((produto) => produto.estado))];
 
   const handleFilterChange = (category, value) => {
     const updatedFilters = { ...selectedFilters };
@@ -97,11 +97,11 @@ export const AsideFilter = ({ onFilterChange }) => {
           </label>
         ))}
 
-        <p>Tamanho</p>
-        {tamanho.map((tamanho, index) => (
+        <p>Estado</p>
+        {estado.map((estado, index) => (
           <label key={index}>
-            <input type="checkbox" name="tamanho" value={tamanho} onChange={() => handleFilterChange("tamanho", tamanho)}/>
-            {tamanho}
+            <input type="checkbox" name="estado" value={estado} onChange={() => handleFilterChange("estado", estado)}/>
+            {estado}
           </label>
         ))}
       </form>

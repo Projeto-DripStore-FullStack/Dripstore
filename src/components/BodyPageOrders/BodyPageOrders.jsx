@@ -12,9 +12,7 @@ export const BodyPageOrders = () => {
 
   const getPedidoById = async (id, userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/pedidos/getOne/${id}`, {
-        params: { userId } 
-      });
+      const response = await axios.get(`http://localhost:3000/pedidos/getOne/${id}`);
       
       return response.data;
     } catch (error) {
@@ -58,7 +56,7 @@ export const BodyPageOrders = () => {
             <p className="orderNumber">Pedido nº {pedido.numeroPedido}</p>
             <h5 className="order">
               {pedido.produtos && pedido.produtos.length > 0
-                ? pedido.produtos.map((produto) => produto.produto?.nome).join(", ")
+                ? pedido.produtos.map((produtoPedido) => produtoPedido.produto?.title).join(", ")
                 : "Produtos indisponíveis"}
             </h5>
           </div>
