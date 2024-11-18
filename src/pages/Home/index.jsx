@@ -7,13 +7,14 @@ import { CardCollection } from "../../components/CardCollections/CardCollections
 import OfertaEspecial from "../../components/OfertaEspecial/OfertaEspecial";
 import { Categories } from "../../components/Categories/Categories";
 import { HighlightProduct } from "../../components/HighlightProducts/HighlightProduct";
+import { MyCarousel } from "../../components/MyCarousel/MyCarousel";
 
 
 function Home() {
   return (
     <main>
       <Header/>
-      <Hero/>
+      <MyCarousel />
       <LayoutPadrao layoutType='home-page'>
         <Topic
           content = "Coleções em Destaque"
