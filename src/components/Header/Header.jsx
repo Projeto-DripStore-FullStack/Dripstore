@@ -10,7 +10,8 @@ import axios from "axios"; // Importar axios para fazer a requisição
 export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [numeroPedido, setNumeroPedido] = useState(null); // Inicialize como null
+  const [numeroPedido, setNumeroPedido] = useState(null);
+  const [usuario, setUsuario] = useState(null);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
@@ -31,6 +32,7 @@ export const Header = () => {
           const pedido = response.data;
           if (pedido) {
             setNumeroPedido(pedido.numeroPedido); // Atualizar o número do pedido
+            setUsuario(pedido);
           }
         })
         .catch((error) => {
@@ -49,10 +51,18 @@ export const Header = () => {
             </div>
             <nav className="menu-mobile-links">
               <ul>
-                <li><Link className="linkNavbarHeader">Home</Link></li>
-                <li><Link className="linkNavbarHeader">Produtos</Link></li>
-                <li><Link className="linkNavbarHeader">Categorias</Link></li>
-                <li><Link className="linkNavbarHeader">Meus Pedidos</Link></li>
+                <li>
+                  <Link className="linkNavbarHeader">Home</Link>
+                </li>
+                <li>
+                  <Link className="linkNavbarHeader">Produtos</Link>
+                </li>
+                <li>
+                  <Link className="linkNavbarHeader">Categorias</Link>
+                </li>
+                <li>
+                  <Link className="linkNavbarHeader">Meus Pedidos</Link>
+                </li>
               </ul>
             </nav>
             <div className="menu-mobile-buttons">
@@ -66,17 +76,17 @@ export const Header = () => {
           </div>
         </div>
       )}
-      
+
       <div className="header-top-area">
         <button className="sandwitch-menu" onClick={toggleMenu}>
-          {menuOpen ? (
-            <span>&times;</span>
-          ) : (
-            <span>&#9776;</span>
-          )}
+          {menuOpen ? <span>&times;</span> : <span>&#9776;</span>}
         </button>
         <Link to="/Home">
-          <img src={logo} alt="Logotipo digital store" className="logo-digital"/>
+          <img
+            src={logo}
+            alt="Logotipo digital store"
+            className="logo-digital"
+          />
         </Link>
         <div className="divInputSearchHeader">
           <input
@@ -87,35 +97,44 @@ export const Header = () => {
           <button className="searchButton">
             <img src={search} alt="botão de busca" />
           </button>
-          
-          <button className="searchBtn-mobile" onClick={toggleSearch}>
-          {searchOpen ? (
-            <img src={search} alt="botão de busca" />
-          ) : (
-            <img src={search} alt="botão de busca" />
-          )}
-        </button>
-        </div>
 
-        <Link className="linkRegister" to="/Register">
-          Cadastre-se
-        </Link>
-        <Link to="/Login" className="btnLogin">
-          <button className="loginButton">Entrar</button>
-        </Link>
-        <button className="buyButton" onMouseEnter={showModalCart} onMouseLeave={hideModalCart}>
+          <button className="searchBtn-mobile" onClick={toggleSearch}>
+            {searchOpen ? (
+              <img src={search} alt="botão de busca" />
+            ) : (
+              <img src={search} alt="botão de busca" />
+            )}
+          </button>
+        </div>
+        {usuario ? (
+          <span>Olá, {usuario.nome}!</span>
+        ) : (
+          <>
+            <Link className="linkRegister" to="/Register">
+              Cadastre-se
+            </Link>
+            <Link to="/Login" className="btnLogin">
+              <button className="loginButton">Entrar</button>
+            </Link>
+          </>
+        )}
+        <button
+          className="buyButton"
+          onMouseEnter={showModalCart}
+          onMouseLeave={hideModalCart}
+        >
           <img src={Buy} alt="" />
         </button>
-        {isModalCartVisible && (
-          <ModalCart/>
-        )}
+        {isModalCartVisible && <ModalCart />}
       </div>
 
-      {searchOpen && (<input
-        type="text"
-        placeholder="Pesquisar produto..."
-        className="search-mobile"
-      />)}
+      {searchOpen && (
+        <input
+          type="text"
+          placeholder="Pesquisar produto..."
+          className="search-mobile"
+        />
+      )}
 
       <div className="header-bottom-area">
         <nav className="navbarHeader">
@@ -136,7 +155,10 @@ export const Header = () => {
               </Link>
             </li>
             <li className="LinkNavbar">
-              <Link className="linkNavbarHeader" to={`/Orders/getOne/${numeroPedido}`}>
+              <Link
+                className="linkNavbarHeader"
+                to={`/Orders/getOne/${numeroPedido}`}
+              >
                 Meus Pedidos
               </Link>
             </li>
