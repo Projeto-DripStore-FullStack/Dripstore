@@ -12,8 +12,10 @@ export const BodyPageOrders = () => {
 
   const getPedidoById = async (id, userId) => {
     try {
-      const response = await axios.get(`http://localhost:3000/pedidos/getOne/${id}`);
-      
+      const response = await axios.get(
+        `http://localhost:3000/pedidos/getOne/${id}`
+      );
+
       return response.data;
     } catch (error) {
       console.error("Erro ao buscar o pedido:", error);
@@ -22,19 +24,15 @@ export const BodyPageOrders = () => {
   };
 
   useEffect(() => {
-    const fetchPedido = async () => {
-      const idToFetch = pedidoId ;
-      const pedidoData = await getPedidoById(idToFetch);
+    const usuarioId = localStorage.getItem("id");
 
-      if (pedidoData) {
-        setPedido(pedidoData);
-      } else {
-        setError("Erro ao carregar os dados do pedido.");
-      }
-    };
-
-    fetchPedido();
-  }, [pedidoId]);
+    if (usuarioId) {
+      axios
+        .get(`http://localhost:3000/pedidos/getOne/${usuarioId}`)
+        .then((response) => setPedido(response.data))
+        .catch((error) => console.error("Erro ao buscar pedidos:", error));
+    }
+  }, []);
 
   if (error) {
     return <div>{error}</div>;
@@ -50,18 +48,30 @@ export const BodyPageOrders = () => {
       <div className="divViewOrdersCar">
         <div className="individualOrderCar">
           <div className="imgBackGroundColor">
-            <img className="imgBodyOrders" src={WhiteSneakers} alt="Tênis Branco" />
+            <img
+              className="imgBodyOrders"
+              src={WhiteSneakers}
+              alt="Tênis Branco"
+            />
           </div>
           <div className="divNumberAndOrder">
             <p className="orderNumber">Pedido nº {pedido.numeroPedido}</p>
             <h5 className="order">
               {pedido.produtos && pedido.produtos.length > 0
-                ? pedido.produtos.map((produtoPedido) => produtoPedido.produto?.title).join(", ")
+                ? pedido.produtos
+                    .map((produtoPedido) => produtoPedido.produto?.title)
+                    .join(", ")
                 : "Produtos indisponíveis"}
             </h5>
           </div>
           <div>
-            <p className={`statusOrder ${pedido.status === "Finalizado" ? 'statusOrderComplete' : 'statusOrderInTransit'}`}>
+            <p
+              className={`statusOrder ${
+                pedido.status === "Finalizado"
+                  ? "statusOrderComplete"
+                  : "statusOrderInTransit"
+              }`}
+            >
               {pedido.status || "Status não disponível"}
             </p>
           </div>

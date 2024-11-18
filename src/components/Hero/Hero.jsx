@@ -15,8 +15,8 @@ export const Hero = () =>{
         </div>
         <div className='hero-img-content'>
           <img src={Sneaker} alt="nike sneaker" className='sneaker-img'/>
-          <img src={Memphis} alt="memphis" className='memphis-img'/>
         </div>
+        <img src={Memphis} alt="memphis" className='memphis-img'/>
       </div>
     </main>
   )

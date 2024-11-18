@@ -23,11 +23,11 @@ function AppRoutes(){
         <Route path="/Register" element={<Register />}></Route>
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Cart/getOne/:produtoId" element={<Cart />}></Route>
-        <Route path="/Confirm/getOne/:numeroPedido" element={<Confirm />}></Route>
+        <Route path="/Confirm/getOne/:produtoId" element={<Confirm />}></Route>
         <Route path="/Orders/getOne/:numeroPedido" element={<Orders />}></Route>
         <Route path="/ProductDetail" element={<ProductDetail />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
-        <Route path="/Success/getOne/:numeroPedido" element={<Success />}></Route>
+        <Route path="/Success/getOne/:pedidoId" element={<Success />}></Route>
         <Route path="/ProductList" element={<ProductList/>}></Route>
         <Route path="/MyInfo" element={<MyInfo/>}></Route>
         <Route path="/CreateAccount" element={<CreateAccount/>}></Route>

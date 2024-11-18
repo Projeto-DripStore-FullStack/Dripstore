@@ -10,6 +10,7 @@ export const BodyPageConfirm = () => {
   const [nomeCartao, setNomeCartao] = useState("");
   const [numeroCartao, setNumeroCartao] = useState("");
   const [validadeCartao, setValidadeCartao] = useState("");
+  const [formaPagamento, setFormaPagamento] = useState("Credito");
   const [cvvCartao, setCvvCartao] = useState("");
   const [total, setTotal] = useState(0); // Defina o total corretamente
   const [quantidade, setQuantidade] = useState(1); // Defina a quantidade de produtos
@@ -17,16 +18,24 @@ export const BodyPageConfirm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Buscar o ID do usuário no localStorage
     const usuarioId = localStorage.getItem("id");
 
+    const produtoId = localStorage.getItem("produtoId"); // ou outro método de recuperação
+    if (produtoId) {
+      axios
+        .get(`http://localhost:3000/produtos/getOne/${produtoId}`)
+        .then((response) => setProduto(response.data))
+        .catch((error) => console.error("Erro ao carregar produto:", error));
+    }
+    
     if (usuarioId) {
       // Buscar os dados do usuário pela API ou de um localStorage
-      axios.get(`http://localhost:3000/usuarios/${usuarioId}`)
-        .then(response => {
+      axios
+        .get(`http://localhost:3000/usuarios/getOne/${usuarioId}`)
+        .then((response) => {
           setUsuario(response.data);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log("Erro ao buscar dados do usuário:", error);
         });
     } else {
@@ -40,12 +49,22 @@ export const BodyPageConfirm = () => {
       return;
     }
 
-    const { nome, cpf, telefone, email, endereco, bairro, cidade, complemento, cep } = usuario;
+    const {
+      nome,
+      cpf,
+      telefone,
+      email,
+      endereco,
+      bairro,
+      cidade,
+      complemento,
+      cep,
+    } = usuario;
 
     const numeroPedido = `PED${Date.now()}`;
     const request = {
       numeroPedido,
-      formapagamento: "Débito", // Defina corretamente conforme o tipo de pagamento
+      formapagamento: formaPagamento, // Defina corretamente conforme o tipo de pagamento
       valorpedido: total,
       status: "Encaminhado",
       usuario_id: usuario.id, // Usando o ID do usuário
@@ -70,9 +89,12 @@ export const BodyPageConfirm = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/pedidos", request);
+      const response = await axios.post(
+        "http://localhost:3000/pedidos",
+        request
+      );
       alert("Compra realizada com sucesso!");
-      navigate(`/Success/getOne/${response.data.id}`);
+      navigate(`/Success/getOne/${response.data.numeroPedido}`);
     } catch (e) {
       console.log("Erro ao criar pedido", e);
       alert("Erro ao realizar a compra. Tente novamente.");
@@ -153,14 +175,40 @@ export const BodyPageConfirm = () => {
           </div>
 
           <div className="div-form-my-paymant-info">
-            <p className="title-my-info-page-confirm">Informações de Pagamento</p>
+            <p className="title-my-info-page-confirm">
+              Informações de Pagamento
+            </p>
             <div className="inputs-radio-form-page-confirm">
               <div className="radios">
                 <div className="radio-type">
-                  <input type="radio" name="pagamento" /> <p>Cartão de Crédito</p>
+                  <input
+                    type="radio"
+                    name="pagamento"
+                    value="Credito"
+                    checked={formaPagamento === "Credito"}
+                    onChange={(e) => setFormaPagamento(e.target.value)}
+                  />{" "}
+                  <p>Cartão de Crédito</p>
                 </div>
                 <div className="radio-type">
-                  <input type="radio" name="pagamento" /> <p>Cartão de Débito</p>
+                  <input
+                    type="radio"
+                    name="pagamento"
+                    value="Debito"
+                    checked={formaPagamento === "Debito"}
+                    onChange={(e) => setFormaPagamento(e.target.value)}
+                  />{" "}
+                  <p>Cartão de Débito</p>
+                </div>
+                <div className="radio-type">
+                  <input
+                    type="radio"
+                    name="pagamento"
+                    value="Boleto"
+                    checked={formaPagamento === "Boleto"}
+                    onChange={(e) => setFormaPagamento(e.target.value)}
+                  />{" "}
+                  <p>Boleto</p>
                 </div>
               </div>
               <InputParaForm
