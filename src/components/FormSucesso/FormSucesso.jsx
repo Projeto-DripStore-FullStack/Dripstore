@@ -1,132 +1,77 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import "./FormSucesso.css";
-import WhiteSneakers from "../../assets/White-Sneakers.png";
+import WhiteSneakers from "../../assets/White-Sneakers.png"; // Imagem padrão caso não haja produto
 
 export const FormSucesso = () => {
+  const { numeroPedido } = useParams();
+  const [pedido, setPedido] = useState(null);
+
+  useEffect(() => {
+    async function getPedidoById(id) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/pedidos/getOne/${id}`
+        );
+        setPedido(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar o pedido:", error.response?.data || error.message);
+      }
+    }
+
+    if (numeroPedido) {
+      getPedidoById(numeroPedido);
+    }
+  }, [numeroPedido]);
+
+  if (!pedido) return <div>Carregando dados do pedido...</div>;
+
+  const produto = pedido.produtos && pedido.produtos.length > 0 ? pedido.produtos[0] : null;
+
   return (
-    <>
-      <div className="form-sucesso-body">
-        <div className="form-sucesso-container">
-          <div className="form-sucesso-header">
-            <div>🎉</div>
-            <div>Compra Realizada com sucesso!</div>
-          </div>
+    <div className="form-sucesso-body">
+      <div className="form-sucesso-container">
+        <div className="form-sucesso-header">
+          <div>🎉</div>
+          <div>Compra Realizada com sucesso!</div>
+        </div>
 
-          <div className="form-sucesso-infoPessoal">
-            <p style={{ marginBottom: "4px" }}>
-              <strong>Informações Pessoais</strong>
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>CPF:</span>{" "}
-              123485913-35
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Email:</span>{" "}
-              francisco@gmail.com
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Nome:</span>{" "}
-              Francisco Antonio Pereira
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span>{" "}
-              (85) 5555-5555
-            </p>
-          </div>
+        <div className="form-sucesso-infoPessoal">
+          <p><strong>Informações Pessoais</strong></p>
+          <p><span style={{ color: "rgba(143, 143, 143, 1)" }}>CPF:</span> {pedido.usuario?.cpf || "Não disponível"}</p>
+          <p><span style={{ color: "rgba(143, 143, 143, 1)" }}>Email:</span> {pedido.usuario?.email || "Não disponível"}</p>
+          <p><span style={{ color: "rgba(143, 143, 143, 1)" }}>Nome:</span> {pedido.usuario?.nome || "Não disponível"}</p>
+        </div>
 
-          <div className="form-sucesso-infoEntrega">
-            <p style={{ marginBottom: "4px" }}>
-              <strong> Informações de Entrega</strong>
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span>{" "}
-              Endereço: Rua João Pessoa, 333
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Bairro:</span>{" "}
-              Centro
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Cidade:</span>{" "}
-              Fortaleza, Ceará
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>CEP:</span>{" "}
-              433-8800
-            </p>
-          </div>
+        <div className="form-sucesso-infoEntrega">
+          <p><strong>Informações de Entrega</strong></p>
+          <p><span style={{ color: "rgba(143, 143, 143, 1)" }}>Endereço:</span> {pedido.endereco || "Não disponível"}</p>
+        </div>
 
-          <div className="form-sucesso-infoPagamento">
-            <p style={{ marginBottom: "4px" }}>
-              <strong>Informações de Pagamento</strong>
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>
-                Titular do Cartão:
-              </span>{" "}
-              FRANCISCO A P
-            </p>
-            <p style={{ marginBottom: "4px" }}>
-              <span style={{ color: "rgba(143, 143, 143, 1)" }}>Final:</span>{" "}
-              ************2020
-            </p>
-          </div>
+        <div className="form-sucesso-infoPagamento">
+          <p><strong>Informações de Pagamento</strong></p>
+          <p><span style={{ color: "rgba(143, 143, 143, 1)" }}>Total:</span> R${pedido.valorpedido ? pedido.valorpedido.toFixed(2) : "0.00"}</p>
+        </div>
 
-          <div
-            className="form-sucesso-infoResumoCompra"
-            style={{ textAlign: "left", marginBottom: "20px" }}
-          >
-            <p style={{ marginBottom: "4px" }}>
-              <strong>Resumo da compra</strong>
-            </p>
-            <div className="form-sucesso-resumoProduto">
-              <div className="form-sucesso-fundo-produto">
-                <img
-                  className="form-sucesso-produto"
-                  src={WhiteSneakers}
-                  alt=""
-                />
-              </div>
-              <div className="form-sucesso-nomeProduto">
-                <p style={{ marginBottom: "4px" }}>
-                  Tênis Nike Revolution 6 Next Nature Masculino
-                </p>
-              </div>
+        <div className="form-sucesso-infoResumoCompra">
+          <p><strong>Resumo da compra</strong></p>
+          <div className="form-sucesso-resumoProduto">
+            <div className="form-sucesso-fundo-produto">
+              <img className="form-sucesso-produto" src={produto ? produto.imagem : WhiteSneakers} alt={produto ? produto.nome : "Produto indisponível"} />
             </div>
-            <div
-              className="form-sucesso-infoTotal"
-            >
-              <p style={{ fontSize: "27px", fontWeight: "bold" }}>Total</p>
-              <div
-                style={{
-                  textAlign: "rigth",
-                  display: "block",
-                  justifyContent: "right",
-                }}
-              >
-                <p style={{ fontSize: "27px", fontWeight: "bold" }}>
-                  R$ 219,00
-                </p>
-                <p style={{ color: "rgba(143, 143, 143, 1)" }}>
-                  ou 10x de R$ 21,00 sem juros
-                </p>
-              </div>
+            <div className="form-sucesso-nomeProduto">
+              <p>{produto ? produto.nome : "Produto não disponível"}</p>
             </div>
-            <div
-            className="form-sucesso-link-recibo"
-            >
-              <a style={{ color: "rgba(71, 71, 71, 1)" }} href="">
-                Imprimir Recibo
-              </a>
-            </div>
+          </div>
+          <div className="form-sucesso-infoTotal">
+            <p style={{ fontSize: "27px", fontWeight: "bold" }}>Total</p>
+            <p style={{ fontSize: "27px", fontWeight: "bold" }}>
+              R${pedido.valorpedido ? pedido.valorpedido.toFixed(2) : "0.00"}
+            </p>
           </div>
         </div>
-        <button
-        className="form-sucesso-btn"
-          onClick={() => (window.location.href = "/")}
-        >
-          Voltar para Home
-        </button>
       </div>
-    </>
+    </div>
   );
 };
