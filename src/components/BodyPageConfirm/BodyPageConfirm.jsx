@@ -1,9 +1,9 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import CartSummary from "../CartSummary/CartSummary";
-import { InputParaForm } from "../InputParaForm/InputParaForm";
-import "./BodyPageConfirm.css";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import axios from "axios"; // Não se esqueça de importar o axios
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import CartSummaryConfirm from "../CartSummaryConfirm/CartSummaryConfirm";
 
 export const BodyPageConfirm = () => {
   const [usuario, setUsuario] = useState({});
@@ -12,40 +12,32 @@ export const BodyPageConfirm = () => {
   const [validadeCartao, setValidadeCartao] = useState("");
   const [formaPagamento, setFormaPagamento] = useState("Credito");
   const [cvvCartao, setCvvCartao] = useState("");
-  const [total, setTotal] = useState(0); // Defina o total corretamente
-  const [quantidade, setQuantidade] = useState(1); // Defina a quantidade de produtos
-  const [produto, setProduto] = useState({}); // Defina o produto
+  const [total, setTotal] = useState(0);
+  const [quantidade, setQuantidade] = useState(1);
+  const [produto, setProduto] = useState({});
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const usuarioId = localStorage.getItem("id");
-
-    const produtoId = localStorage.getItem("produtoId"); // ou outro método de recuperação
+    const produtoId = localStorage.getItem("produtoId");
     if (produtoId) {
       axios
         .get(`http://localhost:3000/produtos/getOne/${produtoId}`)
         .then((response) => setProduto(response.data))
-        .catch((error) => console.error("Erro ao carregar produto:", error));
+        .catch(() => {});
     }
-    
     if (usuarioId) {
-      // Buscar os dados do usuário pela API ou de um localStorage
       axios
         .get(`http://localhost:3000/usuarios/getOne/${usuarioId}`)
-        .then((response) => {
-          setUsuario(response.data);
-        })
-        .catch((error) => {
-          console.log("Erro ao buscar dados do usuário:", error);
-        });
-    } else {
-      console.log("Usuário não encontrado, ID não disponível.");
+        .then((response) => setUsuario(response.data))
+        .catch(() => {});
     }
   }, []);
 
   const handleConfirmarCompra = async () => {
     if (!usuario.id) {
-      alert("Você precisa estar logado para finalizar a compra.");
+      toast.error("Você precisa estar logado para finalizar a compra.");
       return;
     }
 
@@ -62,12 +54,14 @@ export const BodyPageConfirm = () => {
     } = usuario;
 
     const numeroPedido = `PED${Date.now()}`;
+    const totalCompra = produto.preco * quantidade;
+
     const request = {
       numeroPedido,
-      formapagamento: formaPagamento, // Defina corretamente conforme o tipo de pagamento
-      valorpedido: total,
+      formapagamento: formaPagamento,
+      valorpedido: totalCompra,
       status: "Encaminhado",
-      usuario_id: usuario.id, // Usando o ID do usuário
+      usuario_id: usuario.id,
       produtos: [{ produtoId: produto.id, quantidade }],
       nomeCartao,
       validadeCartao,
@@ -85,24 +79,27 @@ export const BodyPageConfirm = () => {
         complemento,
         cep,
       },
-      produtos: [produto], // Passando o produto corretamente
     };
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/pedidos",
-        request
-      );
-      alert("Compra realizada com sucesso!");
+      setLoading(true);
+      const response = await axios.post("http://localhost:3000/pedidos", request);
+      toast.success("Compra realizada com sucesso!");
       navigate(`/Success/getOne/${response.data.numeroPedido}`);
-    } catch (e) {
-      console.log("Erro ao criar pedido", e);
-      alert("Erro ao realizar a compra. Tente novamente.");
+    } catch {
+      toast.error("Erro ao realizar a compra. Tente novamente.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="body-confirm-container">
+       {loading && (
+        <div className="overlay">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )}
       <div className="title-page-confirm">
         <h1>Finalizar Compra</h1>
       </div>
@@ -248,12 +245,22 @@ export const BodyPageConfirm = () => {
             </p>
           </div>
           <button className="form-confirm-btn" onClick={handleConfirmarCompra}>
-            Realizar Pagamento
+            {loading ? (
+              <Spinner animation="border" size="sm" />
+            ) : (
+              "Confirmar Compra"
+            )}
           </button>
         </div>
 
-        <div className="resume">
-          <CartSummary quantidade={quantidade} total={total} />
+        <div className="cart-resume-page-confirm">
+          <CartSummaryConfirm
+            produto={produto}
+            quantidade={quantidade}
+            setQuantidade={setQuantidade}
+            total={total}
+            setTotal={setTotal}
+          />
         </div>
       </div>
     </div>
