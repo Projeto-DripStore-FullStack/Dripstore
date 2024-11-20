@@ -1,0 +1,32 @@
+.side-menu-container{
+  background-color: #fff;
+  flex: 1;
+  height: fit-content;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.link-container{
+  border-bottom: 2px solid #ccc;
+  padding: 1rem 0;
+}
+
+.link-container:last-child{
+  border-bottom: none;
+}
+
+.link-side-menu{
+  color: #222;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link-side-menu:hover{
+  color: #c92071;
+}
+
+.link-side-menu.active{
+  color: #c92071;
+}
+

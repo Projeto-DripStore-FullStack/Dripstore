@@ -7,19 +7,23 @@
 .hero-container{
   height: calc(100vh - 160px);
   background-color: #F5F5F5;
+  width: 100%;
 }
 
 .hero-content{
+  position: relative;
   width: 90%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   margin: auto;
 }
 
 .hero-text-content{
   display: flex;
-  width: 50%;
   flex-direction: column;
   justify-content: center;
+  height: calc(100vh - 160px);
+  flex: 1;
   gap: 1rem;
   font-family: 'inter', sans-serif;
 }
@@ -44,27 +48,80 @@
   margin-top: 1.5rem;
 }
 
+.hero-img-content{
+  height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+}
+
 .hero-call{
   display: flex;
   align-items: flex-end;
   font-size: 4rem;
-  position: relative;
-}
-
-.hero-call img{
-  display: inline;
-  width: 4rem;
-  height: 5rem;
-  vertical-align: middle;
 }
 
 .memphis-img{
   position: absolute;
-  top: 25vh;
-  right: 5vw;
+  top:0;
+  right: 0;
   object-fit: cover;
 }
 
 .sneaker-img{
   object-fit: cover;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .hero-container{
+    overflow: hidden;
+    height: calc(100vh - 124px);
+  }
+
+  .hero-content{
+    flex-direction: column-reverse;
+  }
+
+  .hero-img-content{
+    width: 100%;
+    display: flex;
+  }
+
+  .sneaker-img{
+    width: 100%;
+  }
+
+  .hero-text-content{
+    width: 100%;
+  }
+
+  .hero-text-content h4{
+    color: #c92071;
+    text-align: center;
+  }
+
+  .hero-text-content p{
+    text-align: center;
+  }
+
+  .hero-call{
+    display: flex;
+    align-items: flex-end;
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  .hero-text-content button{
+    width: 100%;
+  }
+
+  .memphis-img{
+    align-self: self-end;
+    top: -20vh;
+    right: 10vw;
+    width: 15vh;
+  }
+
+  .buyButton{
+    flex: 1;
+  }
 }

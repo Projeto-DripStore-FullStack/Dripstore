@@ -1,0 +1,107 @@
+.body-confirm-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f8fe;
+    align-items: center;
+    text-align: left;
+    width: 100%;
+    padding: 50px;
+    height: auto;
+    justify-content: space-between;
+    font-family: 'inter', sans-serif;
+}
+
+.title-page-confirm {
+    width: 80%;
+}
+
+.div-forms-and-resume {
+    margin-top: 5vh;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+.forms-page-confirm {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 240vh;
+}
+
+.div-form-my-info {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.div-form-my-adress {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.div-form-my-paymant-info {
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    background-color: white;
+    padding: 20px;
+    gap: 5px;
+    border-radius: 10px;
+}
+
+.title-my-info-page-confirm {
+    font-family: 'inter', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid;
+    border-bottom-color: #CCCCCC;
+    padding: 15px;
+}
+
+.inputs-form-page-confirm {
+    height: 80%;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.radios {
+    display: flex;
+    width: 45%;
+    justify-content: space-between;
+}
+
+.radio-type {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-confirm-btn {
+    background-color: rgba(246, 170, 28, 1);
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.resume{
+    width: 400px;
+}

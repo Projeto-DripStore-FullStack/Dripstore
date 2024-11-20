@@ -1,21 +1,81 @@
-import KSwiss from "../../assets/KSwiss.png"
-import "./Produto.css"
+/* eslint-disable react/jsx-key */
+import { useEffect, useState } from "react";
+import KSwiss from "../../assets/KSwiss.png";
+import "./Produto.css";
+import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
-function Produto(){
-  return(
+function Produto({ filters }) {
+  const [produtos, setProdutos] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const searchParams = new URLSearchParams(location.search);
+  const categoriaPecaId = searchParams.get("categoriaPeca_id");
+
+  const getProduct = async () => {
+    try {
+      const response = await axios.get("http://localhost:3000/produtos");
+      const produtosData = response.data;
+
+      if (Array.isArray(produtosData)) {
+        const produtosFiltrados = categoriaPecaId
+          ? produtosData.filter(
+              (produto) =>
+                produto.categoriaPeca_id === parseInt(categoriaPecaId)
+            )
+          : produtosData;
+
+        setProdutos(produtosFiltrados);
+      } else {
+        console.error("Expected an array but got:", produtosData);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar os produtos:", error);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, [categoriaPecaId]);
+  
+  const filteredProducts = produtos.filter((produto) => {
+    return (
+      (!filters?.marca || (filters.marca.length === 0 || filters.marca.includes(produto.marca))) &&
+      (!filters?.categoriaFuncao || (filters.categoriaFuncao.length === 0 || filters.categoriaFuncao.includes(produto.categoriaFuncao))) &&
+      (!filters?.genero || (filters.genero.length === 0 || filters.genero.includes(produto.genero))) &&
+      (!filters?.tamanho || (filters.tamanho.length === 0 || filters.tamanho.includes(produto.tamanho)))
+    );
+  });  
+
+  const handleProductClick = (produtoId) => {
+    navigate(`/Cart/getOne/${produtoId}`);
+  };
+
+  return (
     <div className="card-produto">
-      <div className="product-board">
-        <div className="product-discount">30% Off</div>
-        <img src={KSwiss} alt="" className="product-image"/>
-      </div>
-      <p className="product-categoria">Tênis</p>
-      <p className="product-nome">K-Swiss V8 - Masculino</p>
-      <div className="product-preco">
-        <p className="product-full">$ 200</p>
-        <p className="product-oferta">$ 100</p>
-      </div>
-    </div>
-  )
+    {filteredProducts.length > 0 ? (
+      filteredProducts.map((produto) => (
+        <div key={produto.id} onClick={() => handleProductClick(produto.id)}>
+          <div className="product-board">
+            <div className="product-discount">{produto.promotion}% Off</div>
+            <img src={KSwiss} alt="" className="product-image" />
+          </div>
+          <p className="product-categoria">{produto.title}</p>
+          <p className="product-nome">
+            {produto.subtitle} - {produto.genero}
+          </p>
+          <div className="product-preco">
+            <p className="product-full">${produto.price}</p>
+            <p className="product-oferta">${produto.price * (1 - produto.promotion * 0.01)}</p>
+          </div>
+        </div>
+      ))
+    ) : (
+      <p>Nenhum produto encontrado com os filtros selecionados.</p>
+    )}
+  </div>
+  );
 }
 
-export default Produto
+export default Produto;

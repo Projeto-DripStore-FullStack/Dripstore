@@ -1,15 +1,14 @@
-import { BodyPageConfirm } from "../../components/BodyPageConfirm/BodyPageConfirm";
 import Footer from "../../components/Footer/Footer";
 import { Header } from "../../components/Header/Header";
+import { BodyPageMyInfo } from "../../components/BodyPageMyInfo/BodyPageMyInfo";
 
-function Confirm() {
+function MyInfo() {
   return (
     <>
       <Header />
-      <BodyPageConfirm />
+      <BodyPageMyInfo />
       <Footer />
     </>
   );
 }
-
-export default Confirm;
+export default MyInfo;
