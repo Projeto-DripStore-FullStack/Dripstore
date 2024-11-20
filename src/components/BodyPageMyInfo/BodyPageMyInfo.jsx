@@ -7,19 +7,27 @@ export const BodyPageMyInfo = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
-
+    const usuarioId = localStorage.getItem("id"); // Obtém o ID do localStorage
+  
+    if (!usuarioId) {
+      console.error("Usuário não está logado ou ID não foi encontrado.");
+      // Opcional: Redirecionar o usuário para a página de login
+      // navigate("/login");
+      return;
+    }
+  
     const fetchUserInfo = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/usuarios/getOne/${usuarioLogado.id}`);
+        const response = await axios.get(`http://localhost:3000/usuarios/getOne/${usuarioId}`);
         setUserInfo(response.data);
       } catch (error) {
         console.error("Erro ao buscar informações do usuário:", error);
       }
     };
-
+  
     fetchUserInfo();
   }, []);
+  
 
   return (
     <div className="bodyMyMyInfo">

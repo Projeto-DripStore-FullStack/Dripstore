@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import CartSummary from "../CartSummary/CartSummary";
+import CartSummaryConfirm from "../CartSummaryConfirm/CartSummaryConfirm";
 import { InputParaForm } from "../InputParaForm/InputParaForm";
 import "./BodyPageConfirm.css";
 import { useEffect, useState } from "react";
@@ -16,18 +16,36 @@ export const BodyPageConfirm = () => {
   const [quantidade, setQuantidade] = useState(1); // Defina a quantidade de produtos
   const [produto, setProduto] = useState({}); // Defina o produto
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const {
+    produto: produtoState,
+    quantidade: quantidadeState,
+    total: totalState,
+  } = state || {}; // Desestruturação do estado
+
+  useEffect(() => {
+    if (produto) {
+      console.log("Produto na página de confirmação:", produtoState);
+      console.log("Quantidade selecionada:", quantidadeState);
+      console.log("Total da compra:", totalState);
+    }
+  }, [produtoState, quantidadeState, totalState]);
 
   useEffect(() => {
     const usuarioId = localStorage.getItem("id");
-
     const produtoId = localStorage.getItem("produtoId"); // ou outro método de recuperação
     if (produtoId) {
       axios
         .get(`http://localhost:3000/produtos/getOne/${produtoId}`)
-        .then((response) => setProduto(response.data))
+        .then((response) => {
+          console.log("Produto carregado:", response.data); // Log do produto carregado
+          setProduto(response.data);
+        })
         .catch((error) => console.error("Erro ao carregar produto:", error));
+    } else {
+      console.log("Nenhum produtoId encontrado no localStorage");
     }
-    
+
     if (usuarioId) {
       // Buscar os dados do usuário pela API ou de um localStorage
       axios
@@ -48,6 +66,8 @@ export const BodyPageConfirm = () => {
       alert("Você precisa estar logado para finalizar a compra.");
       return;
     }
+    console.log("Produto atual no estado:", produto);
+    console.log("Quantidade selecionada:", quantidade);
 
     const {
       nome,
@@ -67,8 +87,6 @@ export const BodyPageConfirm = () => {
       formapagamento: formaPagamento, // Defina corretamente conforme o tipo de pagamento
       valorpedido: total,
       status: "Encaminhado",
-      usuario_id: usuario.id, // Usando o ID do usuário
-      produtos: [{ produtoId: produto.id, quantidade }],
       nomeCartao,
       validadeCartao,
       cvvCartao,
@@ -85,14 +103,16 @@ export const BodyPageConfirm = () => {
         complemento,
         cep,
       },
-      produtos: [produto], // Passando o produto corretamente
+      produtos: [{ produtoId: produto.id, quantidade }],
     };
 
+    console.log("dados do pedido:", request);
     try {
       const response = await axios.post(
         "http://localhost:3000/pedidos",
         request
       );
+      console.log("resposta ao criar pedido:", response.data);
       alert("Compra realizada com sucesso!");
       navigate(`/Success/getOne/${response.data.numeroPedido}`);
     } catch (e) {
@@ -241,10 +261,10 @@ export const BodyPageConfirm = () => {
           <div className="form-sucesso-infoTotal">
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>Total</p>
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>
-              R$ {total ? total.toFixed(2) : "0.00"}
+              R$ {totalState ? totalState.toFixed(2) : "0.00"}
             </p>
             <p style={{ color: "rgba(143, 143, 143, 1)" }}>
-              ou 10x de R$ {(total / 10).toFixed(2)} sem juros
+              ou 10x de R$ {(totalState / 10).toFixed(2)} sem juros
             </p>
           </div>
           <button className="form-confirm-btn" onClick={handleConfirmarCompra}>
@@ -253,7 +273,7 @@ export const BodyPageConfirm = () => {
         </div>
 
         <div className="resume">
-          <CartSummary quantidade={quantidade} total={total} />
+          <CartSummaryConfirm quantidade={quantidadeState} total={totalState} />
         </div>
       </div>
     </div>

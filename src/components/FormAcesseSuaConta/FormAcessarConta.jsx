@@ -4,15 +4,18 @@ import "./FormAcessarConta.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const FormAcessarConta = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       const response = await axios.post(
         "http://localhost:3000/usuarios/login",
@@ -24,15 +27,32 @@ export const FormAcessarConta = () => {
 
       localStorage.setItem("id", response.data.id);
 
-      navigate("/Home");
+      // Exibir mensagem de sucesso
+      toast.success("Login realizado, seja bem-vindo!");
+
+      // Redirecionar após um curto atraso
+      setTimeout(() => {
+        navigate("/Home");
+      }, 2000);
     } catch (error) {
       console.error("Erro ao acessar a conta:", error);
-      alert(error.response?.data || "Erro ao acessar a conta. Tente novamente.");
+      toast.error(
+        error.response?.data || "Erro ao acessar a conta. Tente novamente."
+      );
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="formAcessarContaBox">
+      {loading && (
+        <div className="overlay">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )}
+      <ToastContainer position="top-center" autoClose={3000} />
+
       <h3 className="titleFormformAcessarConta">Acesse Sua Conta</h3>
       <p className="pFormformAcessarConta">
         Novo Cliente? Então registre-se{" "}
@@ -59,7 +79,11 @@ export const FormAcessarConta = () => {
         <a className="aFormformAcessarConta" href="">
           Esqueci minha senha
         </a>
-        <button type="submit" className="btnFormformAcessarConta">
+        <button
+          type="submit"
+          className="btnFormformAcessarConta"
+          disabled={loading}
+        >
           Acessar Conta
         </button>
       </form>
