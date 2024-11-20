@@ -1,34 +1,19 @@
 import axios from "axios";
-import "./BodyPageOrders.css";
+import { useEffect, useState } from "react";
 import WhiteSneakers from "../../assets/White-Sneakers.png";
 import { SideMenuOrders } from "../SideMenuOrders/SideMenuOrders";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import "./BodyPageOrders.css";
 
 export const BodyPageOrders = () => {
-  const { pedidoId } = useParams();
   const [pedido, setPedido] = useState(null);
   const [error, setError] = useState(null);
 
-  const getPedidoById = async (id, userId) => {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/pedidos/getOne/${id}`
-      );
-
-      return response.data;
-    } catch (error) {
-      console.error("Erro ao buscar o pedido:", error);
-      return null;
-    }
-  };
-
   useEffect(() => {
-    const usuarioId = localStorage.getItem("id");
+    const usuario_id = localStorage.getItem("id");
 
-    if (usuarioId) {
+    if (usuario_id) {
       axios
-        .get(`http://localhost:3000/pedidos/getOne/${usuarioId}`)
+        .get(`http://localhost:3000/pedidos/getOne/${usuario_id}`)
         .then((response) => setPedido(response.data))
         .catch((error) => console.error("Erro ao buscar pedidos:", error));
     }

@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useCart } from "../../components/CartContext/CartContext";
-import "./CartSummary.css";
+import "./CartSummaryConfirm.css";
 
-const CartSummary = () => {
+const CartSummaryConfirm = ({ quantidade, total: totalProp }) => {
   const { produtoId } = useParams();
-  const { quantidade, subtotal } = useCart();  // Usando o CartContext
   const [produto, setProduto] = useState(null);
-  const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const getProductById = async (id) => {
+  async function getProductById(productId) {
     try {
-      const response = await axios.get(`http://localhost:3000/produtos/getOne/${id}`);
+      const response = await axios.get(
+        `http://localhost:3000/produtos/getOne/${productId}`
+      );
       setProduto(response.data);
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
       setError("Erro ao carregar produto.");
     }
-  };
+  }
 
   useEffect(() => {
     if (produtoId) {
@@ -28,19 +27,14 @@ const CartSummary = () => {
     }
   }, [produtoId]);
 
-  const calcularTotalComDesconto = () => {
-    const descontoUnitario = parseFloat(produto?.promotion) || 0;
-    const precoUnitario = parseFloat(produto?.price) || 0;
-    const descontoTotal = descontoUnitario * quantidade;
+  const precoUnitario = parseFloat(produto?.price) || 0;
+  const subtotal = precoUnitario * (quantidade || 1);
 
-    setTotal(subtotal - descontoTotal);
-  };
+  const desconto = parseFloat(produto?.promotion) || 0;
+  const totalDesconto = desconto * (quantidade || 1);
+  const total = subtotal - totalDesconto; // The total calculation uses `subtotal` and `desconto`
 
-  useEffect(() => {
-    if (produto) {
-      calcularTotalComDesconto();
-    }
-  }, [subtotal, quantidade, produto]);
+  const valorPedido = !isNaN(total) ? total.toFixed(2) : "0.00";
 
   const handleConfirmarCompra = () => {
     const usuario = localStorage.getItem("id");
@@ -54,8 +48,9 @@ const CartSummary = () => {
       return;
     }
 
+    // Redirecionando para a página de confirmação com o produto
     navigate(`/Confirm/getOne/${produto.id}`, {
-      state: { produto, quantidade, total },
+      state: { produto, quantidade, total }, // Passando os dados necessários
     });
   };
 
@@ -87,10 +82,9 @@ const CartSummary = () => {
             </div>
           </div>
         </div>
-        <button onClick={handleConfirmarCompra}>Comprar</button>
       </div>
     </main>
   );
 };
 
-export default CartSummary;
+export default CartSummaryConfirm;
