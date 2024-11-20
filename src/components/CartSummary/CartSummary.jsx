@@ -16,6 +16,7 @@ const CartSummary = () => {
     try {
       const response = await axios.get(`http://localhost:3000/produtos/getOne/${id}`);
       setProduto(response.data);
+      localStorage.setItem("produtoId", produtoId);
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
       setError("Erro ao carregar produto.");
@@ -48,16 +49,18 @@ const CartSummary = () => {
       alert("Você precisa estar logado para finalizar a compra.");
       return;
     }
-
+  
     if (!produto) {
       alert("Produto não carregado. Tente novamente.");
       return;
     }
-
+    localStorage.setItem("produtoId", produto.id);
+  
     navigate(`/Confirm/getOne/${produto.id}`, {
       state: { produto, quantidade, total },
     });
   };
+  
 
   if (error) return <div>{error}</div>;
   if (!produto) return <div>Carregando...</div>;
