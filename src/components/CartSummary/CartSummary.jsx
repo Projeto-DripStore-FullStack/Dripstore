@@ -1,25 +1,26 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { useCart } from "../../components/CartContext/CartContext";
 import "./CartSummary.css";
 
-const CartSummary = ({ quantidade, total: totalProp }) => {
+const CartSummary = () => {
   const { produtoId } = useParams();
+  const { quantidade, subtotal } = useCart();  // Usando o CartContext
   const [produto, setProduto] = useState(null);
+  const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  async function getProductById(productId) {
+  const getProductById = async (id) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/produtos/getOne/${productId}`
-      );
+      const response = await axios.get(`http://localhost:3000/produtos/getOne/${id}`);
       setProduto(response.data);
     } catch (error) {
       console.error("Erro ao buscar o produto:", error);
       setError("Erro ao carregar produto.");
     }
-  }
+  };
 
   useEffect(() => {
     if (produtoId) {
@@ -27,14 +28,19 @@ const CartSummary = ({ quantidade, total: totalProp }) => {
     }
   }, [produtoId]);
 
-  const precoUnitario = parseFloat(produto?.price) || 0;
-  const subtotal = precoUnitario * (quantidade || 1);
+  const calcularTotalComDesconto = () => {
+    const descontoUnitario = parseFloat(produto?.promotion) || 0;
+    const precoUnitario = parseFloat(produto?.price) || 0;
+    const descontoTotal = descontoUnitario * quantidade;
 
-  const desconto = parseFloat(produto?.promotion) || 0;
-  const totalDesconto = desconto * (quantidade || 1);
-  const total = subtotal - totalDesconto; // The total calculation uses `subtotal` and `desconto`
+    setTotal(subtotal - descontoTotal);
+  };
 
-  const valorPedido = !isNaN(total) ? total.toFixed(2) : "0.00";
+  useEffect(() => {
+    if (produto) {
+      calcularTotalComDesconto();
+    }
+  }, [subtotal, quantidade, produto]);
 
   const handleConfirmarCompra = () => {
     const usuario = localStorage.getItem("id");
@@ -48,9 +54,8 @@ const CartSummary = ({ quantidade, total: totalProp }) => {
       return;
     }
 
-    // Redirecionando para a página de confirmação com o produto
     navigate(`/Confirm/getOne/${produto.id}`, {
-      state: { produto, quantidade, total }, // Passando os dados necessários
+      state: { produto, quantidade, total },
     });
   };
 

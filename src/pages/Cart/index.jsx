@@ -4,19 +4,22 @@ import Footer from "../../components/Footer/Footer";
 import MyCart from "../../components/MyCart/MyCart";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import LayoutPadrao from "../../components/LayoutPadrao/LayoutPadrao";
+import { CartProvider } from "../../components/CartContext/CartContext";
 
-function Cart(){
-  return(
+function Cart() {
+  return (
     <>
-      <Header/>
+      <Header />
       <LayoutPadrao layoutType="cart-page">
-        <MyCart/>
-        <CartSummary/>
-        <ProductRelatedGallery/>
+        <CartProvider>
+          <MyCart />
+          <CartSummary />
+        </CartProvider>
+        <ProductRelatedGallery />
       </LayoutPadrao>
-      <Footer/>
+      <Footer />
     </>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
