@@ -6,20 +6,22 @@ import Produto from "../../components/Produto/Produto";
 import { useState } from "react";
 
 function ProductList() {
-  const [filters, setFilters] = useState({});
+  const [filters, setFilters] = useState({
+    marca: [],
+    categoriaFuncao: [],
+    genero: [],
+    estado: [],
+  });
 
-  const onFilterChange = (filtro, valor) => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      [filtro]: valor
-    }));
+   const handleFilterChange = (updatedFilters) => {
+    setFilters(updatedFilters);
   };
 
   return (
     <> 
       <Header />
       <LayoutPadrao layoutType="product-list">
-        <AsideFilter onFilterChange={onFilterChange} />
+        <AsideFilter onFilterChange={handleFilterChange} />
         <Produto filters={filters} />
       </LayoutPadrao>
       <Footer /> 
