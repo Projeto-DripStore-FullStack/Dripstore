@@ -80,7 +80,8 @@ export const BodyPageConfirm = () => {
       },
       produtos: [
         {
-          produtoId: produtoState.id,
+          produto_id: parseInt(produtoState.id),
+          quantidade: quantidadeState 
         },
       ],
     };

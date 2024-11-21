@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import WhiteNike5 from "../../assets/white-nike-5.png";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import WhiteNike5 from "../../assets/white-nike-5.png";
 import { useCart } from "../../components/CartContext/CartContext";
 import "./MyCart.css";
 
@@ -20,6 +20,7 @@ const MyCart = () => {
   };
 
   useEffect(() => {
+    console.log(produtoId)
     if (produtoId) {
       getProductById(produtoId);
     }

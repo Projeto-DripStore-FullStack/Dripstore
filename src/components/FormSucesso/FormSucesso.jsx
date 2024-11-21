@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./FormSucesso.css";
 import WhiteSneakers from "../../assets/White-Sneakers.png"; // Imagem padrão caso não haja produto
@@ -7,6 +7,8 @@ import WhiteSneakers from "../../assets/White-Sneakers.png"; // Imagem padrão c
 export const FormSucesso = () => {
   const { pedidoId } = useParams();
   const [pedido, setPedido] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     async function getPedidoById(id) {
@@ -63,7 +65,7 @@ export const FormSucesso = () => {
           <p><strong>Resumo da compra</strong></p>
           <div className="form-sucesso-resumoProduto">
             <div className="form-sucesso-fundo-produto">
-              <img className="form-sucesso-produto" src={pedido.produto ? pedido.produto.imagem : WhiteSneakers} alt={pedido.produto ? pedido.produto.title : "Produto indisponível"} />
+              <img className="form-sucesso-produto" src={produto ? produto.imagem : WhiteSneakers} alt={produto ? produto.subtitle : "Produto indisponível"} />
             </div>
             <div className="form-sucesso-nomeProduto">
               <p>{produto ? produto.nome : "Produto não disponível"}</p>
@@ -80,7 +82,7 @@ export const FormSucesso = () => {
           </div>
         </div>
       </div>
-        <button className="form-sucesso-btn">Voltar para Home</button>  
+        <button className="form-sucesso-btn" onClick={() => navigate("/Home")} >Voltar para Home</button>  
     </div>
   );
 };
