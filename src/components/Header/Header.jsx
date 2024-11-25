@@ -12,6 +12,7 @@ export const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [numeroPedido, setNumeroPedido] = useState(null);
   const [usuario, setUsuario] = useState(null);
+  const [quantidadeTotal, setQuantidadeTotal] = useState(0);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
   const toggleSearch = () => setSearchOpen(!searchOpen);
@@ -20,6 +21,15 @@ export const Header = () => {
 
   const showModalCart = () => setModalCartVisible(true);
   const hideModalCart = () => setModalCartVisible(false);
+
+  useEffect(() => {
+    const carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const quantidade = carrinho.reduce(
+      (acc, item) => acc + item.quantidade,
+      0
+    );
+    setQuantidadeTotal(quantidade);
+  }, [isModalCartVisible]);
 
   useEffect(() => {
     // Recuperar o id do usuário do localStorage
@@ -120,10 +130,10 @@ export const Header = () => {
         )}
         <button
           className="buyButton"
-          onMouseEnter={showModalCart}
-          onMouseLeave={hideModalCart}
+          onClick={() => setModalCartVisible(!isModalCartVisible)}
         >
           <img src={Buy} alt="" />
+          <span className="badge bg-danger">{quantidadeTotal}</span>
         </button>
         {isModalCartVisible && <ModalCart />}
       </div>

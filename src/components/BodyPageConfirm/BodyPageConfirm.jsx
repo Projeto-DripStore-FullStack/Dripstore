@@ -14,25 +14,16 @@ export const BodyPageConfirm = () => {
   const [validadeCartao, setValidadeCartao] = useState("");
   const [formaPagamento, setFormaPagamento] = useState("Credito");
   const [cvvCartao, setCvvCartao] = useState("");
-  const [total, setTotal] = useState(0);
   const [quantidade, setQuantidade] = useState(1);
-  const [produto, setProduto] = useState({});
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { state } = useLocation();
-  const {
-    produto: produtoState,
-    quantidade: quantidadeState,
-    total: totalState,
-  } = state || {};
+  const { carrinho, total } = state || { carrinho: [], total: 0 };
 
   useEffect(() => {
-    if (produto) {
-      console.log("Produto na página de confirmação:", produtoState);
-      console.log("Quantidade selecionada:", quantidadeState);
-      console.log("Total da compra:", totalState);
-    }
-  }, [produtoState, quantidadeState, totalState]);
+    console.log("Produtos no carrinho:", carrinho);
+    console.log("Total:", total);
+  }, [carrinho, total]);
 
   useEffect(() => {
     const usuarioId = localStorage.getItem("id");
@@ -56,10 +47,15 @@ export const BodyPageConfirm = () => {
       return;
     }
 
+    const produtosNoCarrinho = carrinho.map((produto) => ({
+      produto_id: produto.id,
+      quantidade: produto.quantidade,
+    }));
+
     const request = {
       numeroPedido: `PED${Date.now()}`,
       formapagamento: formaPagamento,
-      valorpedido: totalState,
+      valorpedido: total,
       status: "Encaminhado",
       nomeCartao,
       usuario_id: usuario.id,
@@ -78,14 +74,10 @@ export const BodyPageConfirm = () => {
         complemento: usuario.complemento,
         cep: usuario.cep,
       },
-      produtos: [
-        {
-          produtoId: produtoState.id,
-        },
-      ],
+      produtos: produtosNoCarrinho,
     };
 
-    setLoading(true); 
+    setLoading(true);
 
     try {
       const response = await axios.post(
@@ -99,7 +91,7 @@ export const BodyPageConfirm = () => {
       console.log("Erro ao criar pedido", error);
       toast.error("Erro ao realizar a compra. Tente novamente.");
     } finally {
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -249,10 +241,10 @@ export const BodyPageConfirm = () => {
           <div className="form-sucesso-infoTotal">
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>Total</p>
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>
-              R$ {totalState ? totalState.toFixed(2) : "0.00"}
+              R$ {total.toFixed(2)}
             </p>
             <p style={{ color: "rgba(143, 143, 143, 1)" }}>
-              ou 10x de R$ {(totalState / 10).toFixed(2)} sem juros
+              ou 10x de R$ {(total / 10).toFixed(2)} sem juros
             </p>
           </div>
           <button className="form-confirm-btn" onClick={handleConfirmarCompra}>
@@ -261,7 +253,7 @@ export const BodyPageConfirm = () => {
         </div>
 
         <div className="resume">
-          <CartSummaryConfirm quantidade={quantidadeState} total={totalState} />
+          <CartSummaryConfirm quantidade={quantidade} total={total} />
         </div>
       </div>
     </div>
