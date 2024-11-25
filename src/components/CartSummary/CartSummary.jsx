@@ -6,7 +6,7 @@ import "./CartSummary.css";
 
 const CartSummary = () => {
   const { produtoId } = useParams();
-  const { quantidade, subtotal } = useCart();  // Usando o CartContext
+  const { quantidade, subtotal } = useCart(); // Usando o CartContext
   const [produto, setProduto] = useState(null);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
@@ -14,7 +14,9 @@ const CartSummary = () => {
 
   const getProductById = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:3000/produtos/getOne/${id}`);
+      const response = await axios.get(
+        `http://localhost:3000/produtos/getOne/${id}`
+      );
       setProduto(response.data);
       localStorage.setItem("produtoId", produtoId);
     } catch (error) {
@@ -49,18 +51,31 @@ const CartSummary = () => {
       alert("Você precisa estar logado para finalizar a compra.");
       return;
     }
-  
+
     if (!produto) {
       alert("Produto não carregado. Tente novamente.");
       return;
     }
-    localStorage.setItem("produtoId", produto.id);
-  
-    navigate(`/Confirm/getOne/${produto.id}`, {
-      state: { produto, quantidade, total },
-    });
+
+    // Salvar o produto completo no localStorage
+    const carrinhoAtual = JSON.parse(localStorage.getItem("carrinho")) || [];
+    const novoProduto = {
+      id: produto.id,
+      title: produto.title,
+      imagem: produto.imagem,
+      preco: produto.price,
+      promocao: produto.promotion,
+      quantidade,
+      total,
+    };
+
+    localStorage.setItem(
+      "carrinho",
+      JSON.stringify([...carrinhoAtual, novoProduto])
+    );
+
+    navigate("/ProductList");
   };
-  
 
   if (error) return <div>{error}</div>;
   if (!produto) return <div>Carregando...</div>;
