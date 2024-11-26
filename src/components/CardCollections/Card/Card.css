@@ -60,6 +60,7 @@
 
 .card-img{
   position: absolute;
+  height: fit-content;
   right: 0;
   bottom: 0;
 }
