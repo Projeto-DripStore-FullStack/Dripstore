@@ -16,9 +16,9 @@ export const Categories = () => {
   const imageMapping = {
     Camisetas: TShirt,
     Calças: Pants,
-    Tenis: Sneakers,
+    Tênis: Sneakers,
     Bonés: Bone,
-    Fones: Headphones
+    Headphones: Headphones
   };
 
   const getCategoriaPecas = async () => {

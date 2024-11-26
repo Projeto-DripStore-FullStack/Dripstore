@@ -208,6 +208,18 @@
   display: none;
 }
 
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #c92071; /* Cor vermelha */
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
 @media (min-width: 320px) and (max-width: 480px) {
   .header-top-area .btnLogin,
   .header-top-area .linkRegister{

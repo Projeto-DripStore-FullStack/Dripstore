@@ -1,9 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import CartSummary from "../CartSummary/CartSummary";
+import CartSummaryConfirm from "../CartSummaryConfirm/CartSummaryConfirm";
 import { InputParaForm } from "../InputParaForm/InputParaForm";
 import "./BodyPageConfirm.css";
 import { useEffect, useState } from "react";
-import axios from "axios"; // Não se esqueça de importar o axios
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const BodyPageConfirm = () => {
   const [usuario, setUsuario] = useState({});
@@ -12,24 +14,20 @@ export const BodyPageConfirm = () => {
   const [validadeCartao, setValidadeCartao] = useState("");
   const [formaPagamento, setFormaPagamento] = useState("Credito");
   const [cvvCartao, setCvvCartao] = useState("");
-  const [total, setTotal] = useState(0); // Defina o total corretamente
-  const [quantidade, setQuantidade] = useState(1); // Defina a quantidade de produtos
-  const [produto, setProduto] = useState({}); // Defina o produto
+  const [quantidade, setQuantidade] = useState(1);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const { carrinho, total } = state || { carrinho: [], total: 0 };
+
+  useEffect(() => {
+    console.log("Produtos no carrinho:", carrinho);
+    console.log("Total:", total);
+  }, [carrinho, total]);
 
   useEffect(() => {
     const usuarioId = localStorage.getItem("id");
-
-    const produtoId = localStorage.getItem("produtoId"); // ou outro método de recuperação
-    if (produtoId) {
-      axios
-        .get(`http://localhost:3000/produtos/getOne/${produtoId}`)
-        .then((response) => setProduto(response.data))
-        .catch((error) => console.error("Erro ao carregar produto:", error));
-    }
-    
     if (usuarioId) {
-      // Buscar os dados do usuário pela API ou de um localStorage
       axios
         .get(`http://localhost:3000/usuarios/getOne/${usuarioId}`)
         .then((response) => {
@@ -45,64 +43,66 @@ export const BodyPageConfirm = () => {
 
   const handleConfirmarCompra = async () => {
     if (!usuario.id) {
-      alert("Você precisa estar logado para finalizar a compra.");
+      toast.error("Você precisa estar logado para finalizar a compra.");
       return;
     }
 
-    const {
-      nome,
-      cpf,
-      telefone,
-      email,
-      endereco,
-      bairro,
-      cidade,
-      complemento,
-      cep,
-    } = usuario;
+    const produtosNoCarrinho = carrinho.map((produto) => ({
+      produto_id: produto.id,
+      quantidade: produto.quantidade,
+    }));
 
-    const numeroPedido = `PED${Date.now()}`;
     const request = {
-      numeroPedido,
-      formapagamento: formaPagamento, // Defina corretamente conforme o tipo de pagamento
+      numeroPedido: `PED${Date.now()}`,
+      formapagamento: formaPagamento,
       valorpedido: total,
       status: "Encaminhado",
-      usuario_id: usuario.id, // Usando o ID do usuário
-      produtos: [{ produtoId: produto.id, quantidade }],
       nomeCartao,
+      usuario_id: usuario.id,
       validadeCartao,
       cvvCartao,
       numeroCartao,
       usuario: {
         id: usuario.id,
-        nome,
-        cpf,
-        telefone,
-        email,
-        endereco,
-        bairro,
-        cidade,
-        complemento,
-        cep,
+        nome: usuario.nome,
+        cpf: usuario.cpf,
+        telefone: usuario.telefone,
+        email: usuario.email,
+        endereco: usuario.endereco,
+        bairro: usuario.bairro,
+        cidade: usuario.cidade,
+        complemento: usuario.complemento,
+        cep: usuario.cep,
       },
-      produtos: [produto], // Passando o produto corretamente
+      produtos: produtosNoCarrinho,
     };
+
+    setLoading(true);
 
     try {
       const response = await axios.post(
         "http://localhost:3000/pedidos",
         request
       );
-      alert("Compra realizada com sucesso!");
-      navigate(`/Success/getOne/${response.data.numeroPedido}`);
-    } catch (e) {
-      console.log("Erro ao criar pedido", e);
-      alert("Erro ao realizar a compra. Tente novamente.");
+      console.log("Pedido criado com sucesso:", response.data);
+      toast.success("Compra realizada com sucesso!");
+      navigate(`/Success/getOne/${response.data.id}`);
+    } catch (error) {
+      console.log("Erro ao criar pedido", error);
+      toast.error("Erro ao realizar a compra. Tente novamente.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="body-confirm-container">
+      {loading && (
+        <div className="overlay">
+          <div className="spinner-border" role="status"></div>
+        </div>
+      )}
+      <ToastContainer position="top-center" autoClose={3000} />
       <div className="title-page-confirm">
         <h1>Finalizar Compra</h1>
       </div>
@@ -241,7 +241,7 @@ export const BodyPageConfirm = () => {
           <div className="form-sucesso-infoTotal">
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>Total</p>
             <p style={{ fontSize: "27px", fontWeight: "bold" }}>
-              R$ {total ? total.toFixed(2) : "0.00"}
+              R$ {total.toFixed(2)}
             </p>
             <p style={{ color: "rgba(143, 143, 143, 1)" }}>
               ou 10x de R$ {(total / 10).toFixed(2)} sem juros
@@ -253,7 +253,7 @@ export const BodyPageConfirm = () => {
         </div>
 
         <div className="resume">
-          <CartSummary quantidade={quantidade} total={total} />
+          <CartSummaryConfirm quantidade={quantidade} total={total} />
         </div>
       </div>
     </div>

@@ -78,6 +78,27 @@
   width: 40px;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Certifique-se de que está acima de todos os elementos */
+  backdrop-filter: blur(5px); /* Efeito de desfoque */
+}
+
+.spinner-border {
+  color: #c92071;
+  width: 4rem;
+  height: 4rem;
+}
+
+
 /* Smartphones 375px */
 @media (max-width: 375px) {
   .formAcessarContaBox{

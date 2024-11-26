@@ -8,12 +8,9 @@ const ProductRelatedGallery = () => {
         <main className="product-related-gallery">
             <div className="product-related-header">
                 <h2>Produtos Relacionados</h2>
-                <Link>Ver todos</Link>
+                <Link to="/ProductList">Ver todos</Link>
             </div>
             <div className="product-related-products">
-                <Produto/>
-                <Produto/>
-                <Produto/>
                 <Produto/>
             </div>
         </main>
