@@ -44,13 +44,16 @@
 
 .divViewMyInfoCar {
     background-color: white;
-    width: 1000px;
-    height: 700px;
+    width: 100%;
+    max-width: 1000px;
+    height: auto; /* Ajustar a altura automaticamente */
     flex: 3;
     justify-content: space-around;
-    height: 400px;
     padding: 30px;
+    overflow: auto; /* Adiciona barra de rolagem se necessário */
+    box-sizing: border-box; /* Garante que o padding seja incluído no tamanho total */
 }
+
 
 .viewMyInfoCarLinks {
     color: #C92071;

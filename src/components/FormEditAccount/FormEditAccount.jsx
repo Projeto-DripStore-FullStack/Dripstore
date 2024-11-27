@@ -49,9 +49,11 @@ export const FormEditAccount = () => {
     e.preventDefault();
     setLoading(true);
 
+    const usuarioId = localStorage.getItem("id");
+
     try {
       const response = await axios.put(
-        `http://localhost:3000/usuarios/getOne/${usuarioId}`,
+        `http://localhost:3000/usuarios/${usuarioId}`,
         formData
       );
       console.log("Conta Editada com sucesso:", response.data);

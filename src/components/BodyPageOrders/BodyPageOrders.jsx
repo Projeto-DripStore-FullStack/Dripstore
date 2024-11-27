@@ -9,23 +9,27 @@ export const BodyPageOrders = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const usuario_id = localStorage.getItem("id");
+    const usuarioId = localStorage.getItem("id");
 
-    if (usuario_id) {
-      axios
-        .get(`http://localhost:3000/pedidos`)
-        .then((response) => {
-          // Filtrar apenas pedidos do usuário com ID 5
-          const pedidosUsuario = response.data.filter(
-            (pedido) => pedido.usuario_id === 5
-          );
-          setPedidos(pedidosUsuario);
-        })
-        .catch((error) => {
-          console.error("Erro ao buscar pedidos:", error);
-          setError("Erro ao carregar pedidos.");
-        });
+    if (!usuarioId) {
+      console.error("Usuário não está logado ou ID não foi encontrado.");
+      setError("Usuário não autenticado.");
+      return;
     }
+
+    axios
+      .get(`http://localhost:3000/pedidos`)
+      .then((response) => {
+        // Filtrar apenas pedidos do usuário logado
+        const pedidosUsuario = response.data.filter(
+          (pedido) => pedido.usuario_id === parseInt(usuarioId)
+        );
+        setPedidos(pedidosUsuario);
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar pedidos:", error);
+        setError("Erro ao carregar pedidos.");
+      });
   }, []);
 
   if (error) {

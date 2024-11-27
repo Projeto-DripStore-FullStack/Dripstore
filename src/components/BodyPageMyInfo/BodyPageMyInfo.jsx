@@ -34,8 +34,8 @@ export const BodyPageMyInfo = () => {
       <SideMenuOrders />
       <div className="divViewMyInfoCar">
         <div className="divViewMyInfoCarTitle">
-          <p className="viewMyInfoCarTitle">Meus Pedidos</p>
-          <a className="viewMyInfoCarLinks" href="/Cart">Editar</a>
+          <p className="viewMyInfoCarTitle">Minhas Informações</p>
+          <a className="viewMyInfoCarLinks" href="/EditAccount">Editar</a>
         </div>
 
         <div className="div-my-personal-info">
@@ -54,7 +54,7 @@ export const BodyPageMyInfo = () => {
                 <span style={{ color: "rgba(143, 143, 143, 1)" }}>Nome:</span> {userInfo.nome}
               </p>
               <p style={{ marginBottom: "8px" }}>
-                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span> {userInfo.celular}
+                <span style={{ color: "rgba(143, 143, 143, 1)" }}>Celular:</span> {userInfo.telefone}
               </p>
             </>
           ) : (

@@ -23,7 +23,7 @@ export const SideMenuOrders = () => {
     <div className="side-menu-container">
       <div className="link-container">
         <Link
-          to="/Profile"
+          // to="/Profile"
           className={`
               link-side-menu 
               ${active === "Profile" ? "active" : ""}
@@ -65,7 +65,7 @@ export const SideMenuOrders = () => {
       </div>
       <div className="link-container">
         <Link
-          to="/Payments"
+          // to="/Payments"
           className={`
               link-side-menu
               ${active === "Payments" ? "active" : ""}

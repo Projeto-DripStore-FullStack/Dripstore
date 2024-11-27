@@ -76,9 +76,16 @@ function Produto({ filters }) {
       <div className="card-produto">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((produto) => (
-            <div key={produto.id} onClick={() => handleProductClick(produto.id)}>
+            <div
+              key={produto.id}
+              onClick={() => handleProductClick(produto.id)}
+            >
               <div className="product-board">
-                <div className="product-discount">{produto.promotion}% Off</div>
+                {produto.promotion && (
+                  <div className="product-discount">
+                    {produto.promotion}% Off
+                  </div>
+                )}{" "}
                 <img src={KSwiss} alt="" className="product-image" />
               </div>
               <p className="product-categoria">{produto.title}</p>
