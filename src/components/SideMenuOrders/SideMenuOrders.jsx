@@ -8,7 +8,6 @@ export const SideMenuOrders = () => {
   const [usuarioId, setUsuarioId] = useState(null); // Estado para armazenar o ID do usuário
   const location = useLocation();
 
-  // Simulação de obtenção do ID do usuário do localStorage ou de algum contexto global
   useEffect(() => {
     const id = localStorage.getItem("id"); // Supondo que o ID do usuário esteja armazenado no localStorage após o login
     if (id) {
@@ -24,7 +23,7 @@ export const SideMenuOrders = () => {
     <div className="side-menu-container">
       <div className="link-container">
         <Link
-          to="/Profile"
+          // to="/Profile"
           className={`
               link-side-menu 
               ${active === "Profile" ? "active" : ""}
@@ -66,7 +65,7 @@ export const SideMenuOrders = () => {
       </div>
       <div className="link-container">
         <Link
-          to="/Payments"
+          // to="/Payments"
           className={`
               link-side-menu
               ${active === "Payments" ? "active" : ""}
