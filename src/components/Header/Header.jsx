@@ -167,7 +167,7 @@ export const Header = () => {
             <li className="LinkNavbar">
               <Link
                 className="linkNavbarHeader"
-                to={`/Orders/getOne/${numeroPedido}`}
+                to={`/Orders`}
               >
                 Meus Pedidos
               </Link>

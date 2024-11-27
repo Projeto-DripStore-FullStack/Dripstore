@@ -39,11 +39,11 @@ export const SideMenuOrders = () => {
         {/* Verifique se o usuarioId está disponível antes de gerar o link */}
         {usuarioId && (
           <Link
-            to={`/Orders/getOne/${usuarioId}`}
+            to={`/Orders`}
             className={`
                 link-side-menu 
                 ${active === "Orders" ? "active" : ""}
-                ${location.pathname === `/Orders/getOne/${usuarioId}` ? "active" : ""}
+                ${location.pathname === `/Orders` ? "active" : ""}
               `}
             onClick={() => handleClick("Orders")}
           >

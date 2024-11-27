@@ -11,6 +11,7 @@ import ProductDetail from "./pages/ProductDetail"
 import ProductList from "./pages/ProductList";
 import Footer from "./components/Footer/Footer";
 import MyInfo from "./pages/MyInfo";
+import EditAccount from "./pages/EditAccount/EditAccount";
 import CreateAccount from "./pages/CreateAccount";
 
 function AppRoutes(){
@@ -30,6 +31,7 @@ function AppRoutes(){
         <Route path="/Success/getOne/:pedidoId" element={<Success />}></Route>
         <Route path="/ProductList" element={<ProductList/>}></Route>
         <Route path="/MyInfo" element={<MyInfo/>}></Route>
+        <Route path="/EditAccount" element={<EditAccount/>}></Route>
         <Route path="/CreateAccount" element={<CreateAccount/>}></Route>
       </Routes>
     </BrowserRouter>
