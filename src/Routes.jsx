@@ -24,7 +24,7 @@ function AppRoutes(){
         <Route path="/Login" element={<Login />}></Route>
         <Route path="/Cart/getOne/:produtoId" element={<Cart />}></Route>
         <Route path="/Confirm" element={<Confirm />}></Route>
-        <Route path="/Orders/getOne/:numeroPedido" element={<Orders />}></Route>
+        <Route path="/Orders" element={<Orders />}></Route>
         <Route path="/ProductDetail" element={<ProductDetail />}></Route>
         <Route path="/Profile" element={<Profile />}></Route>
         <Route path="/Success/getOne/:pedidoId" element={<Success />}></Route>
