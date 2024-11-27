@@ -37,3 +37,17 @@
 .product-list-filter-form input{
     margin: 0 .5rem 0 0;
 }
+
+.checkbox-color{
+    all: unset;
+    border: 1px solid black;
+    width: .8rem;
+    height: .8rem;
+    display: inline-block;
+}
+
+.checkbox-color:checked{
+    background-image: url('../../assets/Checkbox.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}

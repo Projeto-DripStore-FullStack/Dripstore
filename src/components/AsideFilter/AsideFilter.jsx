@@ -76,7 +76,7 @@ export const AsideFilter = ({ onFilterChange }) => {
         <p>Marca</p>
         {marcas.map((marca, index) => (
           <label key={index}>
-            <input type="checkbox" name="marca" value={marca} onChange={() => handleFilterChange("marca", marca)}/>
+            <input type="checkbox" className="checkbox-color"  name="marca" value={marca} onChange={() => handleFilterChange("marca", marca)}/>
             {marca}
           </label>
         ))}
@@ -84,7 +84,7 @@ export const AsideFilter = ({ onFilterChange }) => {
         <p>Categoria</p>
         {categoriasFuncao.map((categoria, index) => (
           <label key={index}>
-            <input type="checkbox" name="categoriaFuncao" value={categoria} onChange={() => handleFilterChange("categoriaFuncao", categoria)}/>
+            <input type="checkbox" className="checkbox-color" name="categoriaFuncao" value={categoria} onChange={() => handleFilterChange("categoriaFuncao", categoria)}/>
             {categoria}
           </label>
         ))}
@@ -92,7 +92,7 @@ export const AsideFilter = ({ onFilterChange }) => {
         <p>Gênero</p>
         {genero.map((genero, index) => (
           <label key={index}>
-            <input type="checkbox" name="genero" value={genero} onChange={() => handleFilterChange("genero", genero)}/>
+            <input type="checkbox" className="checkbox-color"  name="genero" value={genero} onChange={() => handleFilterChange("genero", genero)}/>
             {genero}
           </label>
         ))}
@@ -100,7 +100,7 @@ export const AsideFilter = ({ onFilterChange }) => {
         <p>Estado</p>
         {estado.map((estado, index) => (
           <label key={index}>
-            <input type="checkbox" name="estado" value={estado} onChange={() => handleFilterChange("estado", estado)}/>
+            <input type="checkbox" className="checkbox-color"  name="estado" value={estado} onChange={() => handleFilterChange("estado", estado)}/>
             {estado}
           </label>
         ))}

@@ -61,8 +61,7 @@
 
 .card-highlights-img{
   position: absolute;
-  border-radius: 5px;
-  width: 13vw;
+  height: fit-content;
   right: 0;
   bottom: 0;
 }

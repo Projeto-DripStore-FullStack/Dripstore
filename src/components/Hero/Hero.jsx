@@ -1,7 +1,6 @@
 import './Hero.css'
 import Sneaker from '../../assets/White-Sneakers-Home.png'
 import Memphis from '../../assets/memphis.png'
-import Fire from '../../assets/queima_de_estoque.png'
 
 export const Hero = () =>{
   return(
