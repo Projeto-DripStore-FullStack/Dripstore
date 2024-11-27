@@ -6,7 +6,7 @@ import "./CartSummary.css";
 
 const CartSummary = () => {
   const { produtoId } = useParams();
-  const { quantidade, subtotal } = useCart(); // Usando o CartContext
+  const { quantidade, subtotal } = useCart(); 
   const [produto, setProduto] = useState(null);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState(null);
