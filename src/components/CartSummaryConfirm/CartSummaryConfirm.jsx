@@ -1,61 +1,20 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./CartSummaryConfirm.css";
 
-const CartSummaryConfirm = ({ quantidade, total: totalProp }) => {
-  const { produtoId } = useParams();
-  const [produto, setProduto] = useState(null);
+const CartSummaryConfirm = ({ quantidade, total: totalProp, promocao }) => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  async function getProductById(productId) {
-    try {
-      const response = await axios.get(
-        `http://localhost:3000/produtos/getOne/${productId}`
-      );
-      setProduto(response.data);
-    } catch (error) {
-      console.error("Erro ao buscar o produto:", error);
-      setError("Erro ao carregar produto.");
-    }
-  }
-
-  useEffect(() => {
-    if (produtoId) {
-      getProductById(produtoId);
-    }
-  }, [produtoId]);
-
-  const precoUnitario = parseFloat(produto?.price) || 0;
-  const subtotal = precoUnitario * (quantidade || 1);
-
-  const desconto = parseFloat(produto?.promotion) || 0;
-  const totalDesconto = desconto * (quantidade || 1);
-  const total = subtotal - totalDesconto; // The total calculation uses `subtotal` and `desconto`
-
-  const valorPedido = !isNaN(total) ? total.toFixed(2) : "0.00";
-
-  const handleConfirmarCompra = () => {
-    const usuario = localStorage.getItem("id");
-    if (!usuario) {
-      alert("Você precisa estar logado para finalizar a compra.");
-      return;
-    }
-
-    if (!produto) {
-      alert("Produto não carregado. Tente novamente.");
-      return;
-    }
-
-    // Redirecionando para a página de confirmação com o produto
-    navigate(`/Confirm/getOne/${produto.id}`, {
-      state: { produto, quantidade, total }, // Passando os dados necessários
-    });
-  };
+  // Usando total e promocao diretamente da prop
+  const total = totalProp || 0; // O total passado como prop
+  const promocaoPorcentagem = parseFloat(promocao) || 0; // A promoção (percentual)
+  const desconto = (total * promocaoPorcentagem) / 100; // Cálculo do desconto
+  const totalComDesconto = total - desconto; // Total após o desconto
+  const subtotal = total + desconto; // Subtotal com o desconto aplicado
+  const valorPedido = !isNaN(totalComDesconto) ? totalComDesconto.toFixed(2) : "0.00"; // Valor do pedido com desconto
 
   if (error) return <div>{error}</div>;
-  if (!produto) return <div>Carregando...</div>;
 
   return (
     <main className="cart-summary">
@@ -68,17 +27,27 @@ const CartSummaryConfirm = ({ quantidade, total: totalProp }) => {
             <p>
               <span>Subtotal:</span>
             </p>
-            <p className="value">R$ {subtotal.toFixed(2)}</p>
+            <p className="value">R$ {total.toFixed(2)}</p>
           </div>
         </div>
+        {promocaoPorcentagem > 0 && (
+          <div className="cart-summary-desconto">
+            <div className="desconto">
+              <p>
+                <span>Desconto ({promocaoPorcentagem}%):</span>
+              </p>
+              <p className="value">- R$ {desconto.toFixed(2)}</p>
+            </div>
+          </div>
+        )}
         <div className="cart-summary-total">
           <div className="total">
             <h3>
-              <span>Total</span>
+              <span>Total com Desconto</span>
             </h3>
             <div className="total-value">
-              <h3>R$ {total.toFixed(2)}</h3>
-              <p>ou 10x de R$ {(total / 10).toFixed(2)} sem juros</p>
+              <h3>R$ {totalComDesconto.toFixed(2)}</h3>
+              <p>ou 10x de R$ {(totalComDesconto / 10).toFixed(2)} sem juros</p>
             </div>
           </div>
         </div>

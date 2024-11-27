@@ -253,7 +253,7 @@ export const BodyPageConfirm = () => {
         </div>
 
         <div className="resume">
-          <CartSummaryConfirm quantidade={quantidade} total={total} />
+          <CartSummaryConfirm quantidade={carrinho} total={total} />
         </div>
       </div>
     </div>
