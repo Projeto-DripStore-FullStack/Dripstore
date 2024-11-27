@@ -51,16 +51,16 @@ export const FormEditAccount = () => {
 
     try {
       const response = await axios.put(
-        "http://localhost:3000/usuarios",
+        `http://localhost:3000/usuarios/getOne/${usuarioId}`,
         formData
       );
-      console.log("Conta criada com sucesso:", response.data);
-      setSuccessMessage("Conta cadastrada com sucesso!");
+      console.log("Conta Editada com sucesso:", response.data);
+      setSuccessMessage("Conta atualizada com sucesso!");
       setTimeout(() => {
-        navigate("/Login");
-      }, 3000);
+        navigate("/MyInfo");
+      }, 4000);
     } catch (error) {
-      console.error("Erro ao criar conta:", error);
+      console.error("Erro ao atualizar conta:", error);
       alert("Erro ao criar conta. Tente novamente.");
     } finally {
       setLoading(false);

@@ -1,12 +1,14 @@
-.bodyMyOrders{
+.bodyMyOrders {
     display: flex;
+    flex-wrap: nowrap; /* Não permite quebra de linha */
     background-color: #f9f8fe;
     width: 100%;
     padding: 50px;
-    height: 700px;
+    height: auto;
     justify-content: space-around;
     font-family: 'inter', sans-serif;
     gap: 1rem;
+    overflow: hidden; /* Evita que o conteúdo extrapole horizontalmente */
 }
 
 .sideBarMenu {
@@ -42,13 +44,17 @@
     color: #C92071;
 }
 
-.divViewOrdersCar{
-    width: 1100px;
-    height: 600px;
-    justify-content: space-around;
+
+.divViewOrdersCar {
+    width: 100%; /* Ajusta para ocupar a área disponível */
+    max-width: 1100px;
+    max-height: 600px; /* Limita a altura máxima */
+    overflow-y: auto; /* Permite rolagem vertical se necessário */
     padding: 30px;
-    flex: 3;
     background-color: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    flex: 1;
 }
 
 .divViewOrdersCarTitle{
@@ -68,14 +74,14 @@
     font-size: 18px;
 }
 
-.individualOrderCar{
-    height: 100px;
+.individualOrderCar {
+    height: auto; /* Ajusta altura para caber conteúdo */
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid 2px;
-    border-bottom-color:#cccccc;
+    border-bottom: solid 2px #cccccc;
+    flex-wrap: wrap; /* Permite quebra para telas menores */
 }
 
 .lastIndividualOrderCar{
@@ -98,15 +104,16 @@
     width: 80px;
 }
 
-.imgBodyOrders{
-    height: 50px;
-    width: 80px;
+.imgBodyOrders {
+    height: auto;
+    max-width: 100%; /* Garante que a imagem não ultrapasse os limites */
+    object-fit: contain;
 }
 
-.divNumberAndOrder{
-    display: block;
-    justify-content: space-between ;
-    height: 50px;
+.divNumberAndOrder {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Adiciona espaçamento vertical */
 }
 
 .orderNumber{
@@ -119,18 +126,27 @@
 }
 
 .statusOrderInTransit{
+    white-space: nowrap; /* Impede quebra de texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: bold;
     font-size: 18px;
     color: #F6AA1C;
 }
 
 .statusOrderComplete{
+    white-space: nowrap; /* Impede quebra de texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: bold;
     font-size: 18px;
     color: #8F8F8F;
 }
 
 .statusOrderCanceled{
+    white-space: nowrap; /* Impede quebra de texto */
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: bold;
     font-size: 18px;
     color: #EE4266;
